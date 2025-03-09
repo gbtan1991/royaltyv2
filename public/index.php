@@ -7,7 +7,7 @@ if(!isset($_SESSION['admin'])){
     header('Location: login.php');
     exit();
 } else {
-    header('Location: dashboard.php');
+    header('Location: ../views/dashboard.php');
     exit();
 }
 

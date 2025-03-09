@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/database.php';
 
 //If the admin is already logged in, redirect to the dashboard
 if(isset($_SESSION['admin'])){
-    header('Location: dashboard.php');
+    header('Location: ../views/dashboard.php');
     exit();
 }
 ?>

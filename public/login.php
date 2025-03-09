@@ -1,9 +1,9 @@
 <?php
-
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/session.php'; // Ensure session starts
 
-//If the admin is already logged in, redirect to the dashboard
-if(isset($_SESSION['admin'])){
+// If the admin is already logged in, redirect to the dashboard
+if (isset($_SESSION['admin'])) {
     header('Location: ../views/dashboard.php');
     exit();
 }

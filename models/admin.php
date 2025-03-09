@@ -1,28 +1,30 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
+class Admin {
+    private $pdo;
 
-class Admin{
-    public static function getAdminByUsername($pdo, $username){
+    // Constructor to automatically use the database connection
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
 
-        $stmt = $pdo->prepare("SELECT * FROM admin WHERE username = ?");
+    // Fetch admin by username
+    public function getAdminByUsername($username) {
+        $stmt = $this->pdo->prepare("SELECT * FROM admin WHERE username = ?");
         $stmt->execute([$username]);
         $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$admin) {
-            exit;
+            throw new Exception("Admin user not found."); // Better error handling
         }
         return $admin;
-        
     }
 
-    public static function addAdmin($pdo, $username, $password, $role = 'admin') {
+    // Add a new admin
+    public function addAdmin($username, $password, $role = 'admin') {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare("INSERT INTO admin (username, password_hash, role) VALUES (?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO admin (username, password_hash, role) VALUES (?, ?, ?)");
         return $stmt->execute([$username, $hashed_password, $role]);
     }
 }
-
-
-
-?>

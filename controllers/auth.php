@@ -1,31 +1,32 @@
 <?php
-require_once __DIR__ . '/../models/admin.php';
+require_once __DIR__ . '/../models/Admin.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/session.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    session_start();
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $admin = Admin::getAdminByUsername($pdo, $username);
+    // ✅ Create an instance of Admin
+    $adminModel = new Admin($pdo);
 
-    if ($admin) {
-        echo "Stored Hash: " . $admin['password_hash'] . "<br>";
-        echo "Entered Password: " . $password . "<br>";
+    try {
+        // ✅ Call the method using the instance
+        $admin = $adminModel->getAdminByUsername($username);
 
         if (password_verify($password, $admin['password_hash'])) {
-            echo "Password Matched! Redirecting...";
             $_SESSION['admin'] = $admin['username'];
-            header("Location: ../public/dashboard.php");
+            header("Location: ../views/dashboard.php");
             exit;
         } else {
-            echo "Password Mismatch!";
+            header("Location: ../public/login.php?error=Invalid credentials");
+            exit;
         }
-    } else {
-        echo "User not found!";
+    } catch (Exception $e) {
+        header("Location: ../public/login.php?error=" . urlencode($e->getMessage()));
+        exit;
     }
-    exit;
 }
-
-
-
-
 ?>

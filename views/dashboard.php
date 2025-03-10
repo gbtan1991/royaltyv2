@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/session.php';
 
 if(!isset($_SESSION['admin'])){
     header('Location: login.php');
@@ -19,8 +20,13 @@ if(!isset($_SESSION['admin'])){
 <body>
 
     <h2>Welcome, <?= htmlspecialchars($_SESSION['admin']) ?>!</h2>
+    <h3>Your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
 
-    <a href="../views/add_admin.php">Add Admin</a>
+    <?php if($_SESSION['role'] == "superadmin"): ?>
+    
+    <a href="../controllers/admin_view.php">Manage Admin Accounts</a>
+    <?php endif; ?>
+
     <a href="../public/logout.php">Logout</a>
     
 </body>

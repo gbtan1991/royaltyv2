@@ -1,12 +1,11 @@
 <?php 
 require_once __DIR__ . "/../config/database.php";
 
-// if(!isset($_SESSION['admin'])){
-//     header('Location: ../public/login.php');
-//     exit();
-// }
-
-
+// Check if user is superadmin
+if ($_SESSION['role'] !== 'superadmin') {
+    header('Location: ../views/dashboard.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +33,7 @@ require_once __DIR__ . "/../config/database.php";
 
 </form>
 
-    <a href="../public/dashboard.php">Back to Dashboard</a>"
+    <a href="../controllers/admin_view.php">Back to Manage Admins</a>
     
 </body>
 </html>

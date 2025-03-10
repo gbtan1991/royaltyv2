@@ -27,4 +27,13 @@ class Admin {
         $stmt = $this->pdo->prepare("INSERT INTO admin (username, password_hash, role) VALUES (?, ?, ?)");
         return $stmt->execute([$username, $hashed_password, $role]);
     }
+
+// Fetch all admins
+public function getAllAdmins() {
+    $stmt = $this->pdo->query("SELECT * FROM admin ORDER BY id ASC");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
 }

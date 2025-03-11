@@ -4,9 +4,6 @@ require_once __DIR__ . '/../helpers/format.php';
 
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +48,17 @@ require_once __DIR__ . '/../helpers/format.php';
                 <tr>
                     <td><?= htmlspecialchars($admin['id']) ?></td>
                     <td><?= htmlspecialchars($admin['username']) ?></td>
-                    <td><?= htmlspecialchars($admin['role']) ?></td>
+                    <td> <?php 
+        if ($admin['role'] === 'superadmin') {
+            echo 'Super Admin';
+        } else {
+            echo 'Admin';
+        }
+    ?></td>
                     <td><?= formatDateTime($admin['created_at']) ?></td>
                     <td><?= formatDateTime($admin['modified_at']) ?></td>
+                    <td>
+                        <a href="../controllers/admin_edit.php?id=<?= $admin['id'] ?>">Edit</a> 
                 </tr>
             <?php endforeach; ?>
         </tbody>

@@ -28,12 +28,29 @@ class Admin {
         return $stmt->execute([$username, $hashed_password, $role]);
     }
 
-// Fetch all admins
-public function getAllAdmins() {
-    $stmt = $this->pdo->query("SELECT * FROM admin ORDER BY id ASC");
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fetch all admins
+    public function getAllAdmins() {
+        $stmt = $this->pdo->query("SELECT * FROM admin ORDER BY id ASC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+// Fetch admin by ID
+public function getAdminById($id) {
+    $stmt = $this->pdo->prepare("SELECT * FROM admin WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// Update admin with password
+public function updateAdminWithPassword($id, $username, $hashed_password, $role) {
+    $stmt = $this->pdo->prepare("UPDATE admin SET username = ?, password_hash = ?, role = ?, modified_at = NOW() WHERE id = ?");
+    return $stmt->execute([$username, $hashed_password, $role, $id]);
+}
+
+// Update admin without password
+public function updateAdmin($id, $username, $role) {
+    $stmt = $this->pdo->prepare("UPDATE admin SET username = ?, role = ?, modified_at = NOW() WHERE id = ?");
+    return $stmt->execute([$username, $role, $id]);
+}
 
 
 }

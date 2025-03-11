@@ -2,7 +2,7 @@
 // Load Database connection and Admin Model
 require_once __DIR__ . '/../config/database.php'; // DB connection
 require_once __DIR__ . '/../config/session.php';  // Session start
-require_once __DIR__ . '/../models/admin.php';   // Admin model
+require_once __DIR__ . '/../models/Admin.php';   // Admin model
 
 // Check if user is logged in
 if (!isset($_SESSION['admin'])) {

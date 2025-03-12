@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $admin = $adminModel->getAdminByUsername($username);
 
         if (password_verify($password, $admin['password_hash'])) {
+            $_SESSION['admin_id'] = $admin['id'];
             $_SESSION['admin'] = $admin['username'];
             $_SESSION['role'] = $admin['role'];
 

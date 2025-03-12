@@ -18,9 +18,9 @@ if(!isset($_SESSION['admin'])){
     <title>Dashboard</title>
 </head>
 <body>
-
+    
     <h2>Welcome, <?= htmlspecialchars($_SESSION['admin']) ?>!</h2>
-    <h3>Your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
+    <h3>Your ID is, <?= htmlspecialchars(string: $_SESSION['admin_id']) ?> and your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
 
     <?php if($_SESSION['role'] == "superadmin"): ?>
     

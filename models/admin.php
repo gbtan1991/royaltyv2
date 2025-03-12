@@ -52,5 +52,10 @@ public function updateAdmin($id, $username, $role) {
     return $stmt->execute([$username, $role, $id]);
 }
 
+// Delete admin
+public function deleteAdmin($id) {
+    $stmt = $this->pdo->prepare("DELETE FROM admin WHERE id = ?");
+    return $stmt->execute([$id]);
+
 
 }

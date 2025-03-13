@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "../../config/database.php";
 
 // Check if user is superadmin
 if ($_SESSION['role'] !== 'superadmin') {
@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'superadmin') {
 
     <h2> Add Admin </h2>
 
-    <form action="../controllers/add_admin.php" method="post">
+    <form action="../../controllers/admin/add_admin.php" method="post">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br><br>
         <label for="password">Password:</label>
@@ -33,7 +33,7 @@ if ($_SESSION['role'] !== 'superadmin') {
 
 </form>
 
-    <a href="../controllers/admin_view.php">Back to Manage Admins</a>
+    <a href="../../controllers/admin/admin_view.php">Back to Manage Admins</a>
     
 </body>
 </html>

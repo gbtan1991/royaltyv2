@@ -23,8 +23,8 @@ if(!isset($_SESSION['admin'])){
     <h3>Your ID is, <?= htmlspecialchars(string: $_SESSION['admin_id']) ?> and your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
 
     <?php if($_SESSION['role'] == "superadmin"): ?>
-    
-    <a href="../controllers/admin_view.php">Manage Admin Accounts</a>
+    <!-- <a href="../controllers/admin/test.php">Test</a> -->
+    <a href="../controllers/admin/admin_view.php">Manage Admin Accounts</a>
     <?php endif; ?>
 
     <a href="../public/logout.php">Logout</a>

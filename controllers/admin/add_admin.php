@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../models/Admin.php';
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../../models/Admin.php';
+require_once __DIR__ . '/../../config/database.php';
 
 // session_start();
 // if (!isset($_SESSION['admin'])) {
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $existingAdmin = $adminModel->getAdminByUsername($username);
         if ($existingAdmin) {
-            header("Location: ../views/add_admin.php?error=Username_exists");
+            header("Location: ../../views/admin/add_admin.php?error=Username_exists");
             exit;
         }
     } catch (Exception $e) {
@@ -30,10 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ✅ Add the new admin
     $success = $adminModel->addAdmin($username, $password, $role);
     if ($success) {
-        header("Location: ../views/add_admin.php?success=Admin_added");
+        header("Location: ../../views/admin/add_admin.php?success=Admin_added");
         exit;
     } else {
-        header("Location: ../views/add_admin.php?error=Failed_to_add_admin");
+        header("Location: ../../views/admin/add_admin.php?error=Failed_to_add_admin");
         exit;
     }
 }

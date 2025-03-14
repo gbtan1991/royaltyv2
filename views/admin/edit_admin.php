@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/../config/session.php';
+require_once __DIR__ . '/../../config/session.php';
 
 
 if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
@@ -24,7 +24,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
 <?php endif; ?>
 
 
-<form action="../controllers/edit_admin.php" method="post">
+<form action="../../controllers/admin/edit_admin.php" method="post">
     <input type="hidden" name="id" value="<?= htmlspecialchars($admin['id']) ?>">
 
     <label for="username">Username:</label><br>

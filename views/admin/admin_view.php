@@ -61,7 +61,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                     <td>
                         <a href="../../controllers/admin/admin_edit.php?id=<?= $admin['id'] ?>">Edit</a> 
     </td>
-                    <td><a href="../controllers/delete_admin.php?id=<?= $admin['id'] ?>" onclick="return confirm('Are you sure you want to delete this admin?');">Delete</a></td>
+                    <td><a href="../../controllers/admin/delete_admin.php?id=<?= $admin['id'] ?>" onclick="return confirm('Are you sure you want to delete this admin?');">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

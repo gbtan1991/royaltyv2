@@ -32,6 +32,13 @@ require_once __DIR__ . '/../../helpers/format.php';
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 
+    <form method="GET" action="../../controllers/admin/admin_view.php">
+        <label for="search">Search by Username:</label>
+        <input type="text" name="search" id="search" placeholder="Enter username">
+        
+    </form>
+    <br>
+
     <!-- Admin Table -->
     <table>
         <thead>

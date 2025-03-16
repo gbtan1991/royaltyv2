@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../helpers/format.php';
     </style>
 </head>
 <body>
-
+ i
     <h2>Admin Accounts</h2>
 
     <!-- Notifications -->
@@ -77,7 +77,9 @@ require_once __DIR__ . '/../../helpers/format.php';
     <a href="../../views/admin/add_admin.php">Add New Admin</a> |
     <a href="../../views/dashboard.php">Back to Dashboard</a>
 
-    <script>
+ <script>
+   
+
 document.getElementById('search-admin').addEventListener('keyup', function() {
     let query = this.value;
     

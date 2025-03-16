@@ -32,11 +32,10 @@ require_once __DIR__ . '/../../helpers/format.php';
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 
-    <form method="GET" action="../../controllers/admin/admin_view.php">
-        <label for="search">Search by Username:</label>
-        <input type="text" name="search" id="search" placeholder="Enter username">
-        
-    </form>
+    <!-- Seach Bar -->
+     <input type="text" id="search-admin" placeholder="Search Admins">
+
+
     <br>
 
     <!-- Admin Table -->
@@ -51,7 +50,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th colspan="2">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="admin-table-body">
             <?php foreach ($admins as $admin): ?>
                 <tr>
                     <td><?= htmlspecialchars($admin['id']) ?></td>
@@ -77,6 +76,29 @@ require_once __DIR__ . '/../../helpers/format.php';
     <br>
     <a href="../../views/admin/add_admin.php">Add New Admin</a> |
     <a href="../../views/dashboard.php">Back to Dashboard</a>
+
+    <script>
+document.getElementById('search-admin').addEventListener('keyup', function() {
+    let query = this.value;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../../controllers/admin/search_admin.php?search=' + encodeURIComponent(query), true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('admin-table-body').innerHTML = xhr.responseText;
+        } else {
+            console.error('AJAX Error. Status: ', xhr.status);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Network Error!');
+    };
+
+    xhr.send();
+});
+</script>
 
 </body>
 </html>

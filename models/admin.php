@@ -60,4 +60,11 @@ public function deleteAdmin($id) {
 
 }
 
+public function searchAdmins($search){
+    $search = "%$search%";
+    $stmt = $this->pdo->prepare("SELECT * FROM admin WHERE username LIKE ? or role LIKE ? ORDER BY id DESC");
+    $stmt->execute([$search, $search]);
+    return $stmt->fetchAll();
+}
+
 }

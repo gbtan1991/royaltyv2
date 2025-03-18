@@ -15,6 +15,7 @@ if(!isset($_SESSION['admin'])){
 $customerModel = new Customer($pdo);
 $customers = $customerModel->getAllCustomers();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +24,16 @@ $customers = $customerModel->getAllCustomers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     

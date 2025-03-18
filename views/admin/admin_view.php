@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../helpers/format.php';
     </style>
 </head>
 <body>
- i
+ 
     <h2>Admin Accounts</h2>
 
     <!-- Notifications -->

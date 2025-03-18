@@ -55,7 +55,7 @@ $customers = $customerModel->getAllCustomers();
                 <th>Registered Date</th>
             </tr>
             <tbody>
-                <?php if (!empty($customers)): ?>
+            <?php if (!empty($customers)): ?>
                 <?php foreach ($customers as $customer) : ?>
                     <tr>
                         <td><?= htmlspecialchars($customer['id']) ?></td>

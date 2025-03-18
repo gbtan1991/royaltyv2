@@ -2,11 +2,18 @@
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/session.php';
+require_once __DIR__ . '/../models/Customer.php';
+require_once __DIR__ . '/../helpers/format.php';
 
 if(!isset($_SESSION['admin'])){
     header('Location: login.php');
     exit();
 }
+
+// Fetching Customers
+
+$customerModel = new Customer($pdo);
+$customers = $customerModel->getAllCustomers();
 
 ?>
 
@@ -21,6 +28,37 @@ if(!isset($_SESSION['admin'])){
     
     <h2>Welcome, <?= htmlspecialchars($_SESSION['admin']) ?>!</h2>
     <h3>Your ID is, <?= htmlspecialchars(string: $_SESSION['admin_id']) ?> and your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
+    
+    <a href="">Add Customer</a>
+
+    <h3>List of Customers</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Registered Date</th>
+            </tr>
+            <tbody>
+                <?php if (!empty($customers)): ?>
+                <?php foreach ($customers as $customer) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($customer['id']) ?></td>
+                        <td><?= htmlspecialchars($customer['username'])?></td>
+                        <td><?= htmlspecialchars($customer['fullname'])?></td>
+                        <td><?= formatDateTime($customer['created_at'])?></td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <tr>
+                    <td colspan="7">No Customers Found.</td>
+                </tr>
+                <?php endif; ?>
+            </tbody>
+        </thead>
+    </table>
+
 
     <?php if($_SESSION['role'] == "superadmin"): ?>
     <!-- <a href="../controllers/admin/test.php">Test</a> -->

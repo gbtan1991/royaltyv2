@@ -38,11 +38,14 @@ $customers = $customerModel->getAllCustomers();
 <body>
     
     <h2>Welcome, <?= htmlspecialchars($_SESSION['admin']) ?>!</h2>
-    <h3>Your ID is, <?= htmlspecialchars(string: $_SESSION['admin_id']) ?> and your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
+    <h3>Your ID is, <?= htmlspecialchars( $_SESSION['admin_id']) ?> and your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
     
     <a href="">Add Customer</a>
 
+    <div style="display: flex; align-items: center; justify-content: space-between;">
     <h3>List of Customers</h3>
+    <a href="../controllers/customer/customer_view.php">View List</a>    
+    </div>
     <table>
         <thead>
             <tr>

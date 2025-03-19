@@ -14,7 +14,7 @@ require_once __DIR__ . "/../../config/database.php";
 </head>
 <body>
 
-    <h2>Register New Customer</h2>
+<h2>Register New Customer</h2>
 
     <form action="../../controllers/customer/add_customer.php" method="post">
         <label for="username">Username:</label>

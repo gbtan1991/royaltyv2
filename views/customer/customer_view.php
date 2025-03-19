@@ -47,6 +47,8 @@ require_once __DIR__ . '/../../helpers/format.php';
                         <td><?= htmlspecialchars($customer['username']) ?></td>
                         <td><?= htmlspecialchars($customer['fullname']) ?></td>
                         <td><?= formatDateTime($customer['created_at']) ?></td>
+                        <td><a href="../../controllers/customer/customer_edit.php?id=<? $customer['id'] ?>">Edit</a></td>
+                        <td><a href="../../controllers/customer/customer_delete.php?id=<? $customer['id'] ?>">Delete</a>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

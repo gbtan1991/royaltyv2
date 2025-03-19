@@ -36,6 +36,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th>Username</th>
                 <th>Full Name</th>
                 <th>Registered Date</th>
+                <th colspan="2">Actions</th>
             </tr>
         </thead>
         <tbody>

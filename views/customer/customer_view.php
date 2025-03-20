@@ -35,6 +35,8 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th>ID</th>
                 <th>Username</th>
                 <th>Full Name</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
                 <th>Registered Date</th>
                 <th colspan="2">Actions</th>
             </tr>
@@ -46,6 +48,8 @@ require_once __DIR__ . '/../../helpers/format.php';
                         <td><?= htmlspecialchars($customer['id']) ?></td>
                         <td><?= htmlspecialchars($customer['username']) ?></td>
                         <td><?= htmlspecialchars($customer['fullname']) ?></td>
+                        <td><?= formatGender($customer['gender']) ?></td>
+                        <td><?= formatBirthdate($customer['birthdate']) ?></td>
                         <td><?= formatDateTime($customer['created_at']) ?></td>
                         <td><a href="../../controllers/customer/customer_edit.php?id=<? $customer['id'] ?>">Edit</a></td>
                         <td><a href="../../controllers/customer/customer_delete.php?id=<? $customer['id'] ?>">Delete</a>

@@ -52,25 +52,32 @@ $customers = $customerModel->getAllCustomers();
                 <th>ID</th>
                 <th>Username</th>
                 <th>Full Name</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
                 <th>Registered Date</th>
+                <th colspan="2">Actions</th>
             </tr>
-            <tbody>
+        </thead>
+        <tbody>
             <?php if (!empty($customers)): ?>
                 <?php foreach ($customers as $customer) : ?>
                     <tr>
                         <td><?= htmlspecialchars($customer['id']) ?></td>
-                        <td><?= htmlspecialchars($customer['username'])?></td>
-                        <td><?= htmlspecialchars($customer['fullname'])?></td>
-                        <td><?= formatDateTime($customer['created_at'])?></td>
+                        <td><?= htmlspecialchars($customer['username']) ?></td>
+                        <td><?= htmlspecialchars($customer['fullname']) ?></td>
+                        <td><?= formatGender($customer['gender']) ?></td>
+                        <td><?= formatBirthdate($customer['birthdate']) ?></td>
+                        <td><?= formatDateTime($customer['created_at']) ?></td>
+                        <td><a href="../../controllers/customer/customer_edit.php?id=<? $customer['id'] ?>">Edit</a></td>
+                        <td><a href="../../controllers/customer/customer_delete.php?id=<? $customer['id'] ?>">Delete</a>
                     </tr>
                 <?php endforeach; ?>
-                <?php else: ?>
+            <?php else: ?>
                 <tr>
-                    <td colspan="7">No Customers Found.</td>
+                    <td colspan="4">No Customers Found.</td>
                 </tr>
-                <?php endif; ?>
-            </tbody>
-        </thead>
+            <?php endif; ?>
+        </tbody>
     </table>
 
 

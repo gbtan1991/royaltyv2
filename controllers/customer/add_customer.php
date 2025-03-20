@@ -5,6 +5,8 @@ require_once __DIR__ . "/../../config/database.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $fullname = $_POST["fullname"];
+    $gender = $_POST['gender'];
+    $birthdate = $_POST['birthdate'];
 
     $customerModel = new Customer($pdo);
 
@@ -18,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     }
 
-    $success = $customerModel->addCustomer($username, $fullname);
+    $success = $customerModel->addCustomer($username, $fullname, $gender, $birthdate);
     if($success){
-        header("Location: ../../views/customer/add_customer.php?success=Customer_added");
+        header("Location: ../../views/customer/customer_view.php?success=Customer_added");
         exit;
     } else {
         header("Location: ../../views/customer/add_customer.php?error=Customer_not_added");

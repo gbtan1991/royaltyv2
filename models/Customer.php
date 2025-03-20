@@ -31,7 +31,17 @@ class Customer {
         $stmt = $this->pdo->prepare("INSERT INTO customer (username, fullname, gender, birthdate) VALUES (?, ?, ?, ?)");
         return $stmt->execute([$username, $fullname, $gender, $birthdate]);
     }
+
+    public function getCustomerCount() {
+        $stmt = $this->pdo->query("SELECT COUNT(*) as count FROM customer");
+        
+        if ($stmt) {
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result ? $result['count'] : 0; // Ensure it returns 0 if no result
+        } else {
+            return 0; // Return 0 if query fails
+        }
+    }
 }
 
-
-?>
+   

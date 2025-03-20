@@ -32,8 +32,7 @@ require_once __DIR__ . "/../../config/database.php";
     <label for="birthdate">Birthdate:</label>
     <input type="date" name="birthdate" id="birthdate" required><br><br>
 
-        <button type="submit">Add</button>
-    </form>
-    
+    <button type="submit">Add</button>
+</form>
 </body>
 </html>

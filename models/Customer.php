@@ -27,9 +27,9 @@ class Customer {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addCustomer($username, $fullname) {
-        $stmt = $this->pdo->prepare("INSERT INTO customer (username, fullname) VALUES (?, ?)");
-        return $stmt->execute([$username, $fullname]);
+    public function addCustomer($username, $fullname, $gender, $birthdate) {
+        $stmt = $this->pdo->prepare("INSERT INTO customer (username, fullname, gender, birthdate) VALUES (?, ?, ?, ?)");
+        return $stmt->execute([$username, $fullname, $gender, $birthdate]);
     }
 }
 

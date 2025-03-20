@@ -13,8 +13,9 @@ if(!isset($_SESSION['admin'])){
 // Fetching Customers
 
 $customerModel = new Customer($pdo);
-$customers = $customerModel->getAllCustomers();
 
+$customers = $customerModel->getAllCustomers();
+$customerCount = $customerModel->getCustomerCount();
 
 ?>
 
@@ -40,10 +41,15 @@ $customers = $customerModel->getAllCustomers();
     <h2>Welcome, <?= htmlspecialchars($_SESSION['admin']) ?>!</h2>
     <h3>Your ID is, <?= htmlspecialchars( $_SESSION['admin_id']) ?> and your role is, <?= htmlspecialchars($_SESSION['role']) ?></h3>
     
-    <a href="">Add Customer</a>
+    <div >
+        <h3>Total Customers</h3>
+        <p><?= htmlspecialchars($customerCount) ?></p>
+    </div>
+    
 
     <div style="display: flex; align-items: center; justify-content: space-between;">
     <h3>List of Customers</h3>
+    <a href="../views/customer/add_customer.php">Add Customer</a>
     <a href="../controllers/customer/customer_view.php">View List</a>    
     </div>
     <table>

@@ -27,6 +27,13 @@ class Customer {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getLatestCustomers($limit = 3) {
+        $stmt = $this->pdo->prepare("SELECT * FROM customer ORDER BY id DESC LIMIT ?");
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function addCustomer($username, $fullname, $gender, $birthdate) {
         $stmt = $this->pdo->prepare("INSERT INTO customer (username, fullname, gender, birthdate) VALUES (?, ?, ?, ?)");
         return $stmt->execute([$username, $fullname, $gender, $birthdate]);
@@ -42,6 +49,19 @@ class Customer {
             return 0; // Return 0 if query fails
         }
     }
+
+    public function getCustomerById($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM customer WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateCustomer($id, $username, $fullname, $gender, $birthdate) {
+        $stmt = $this->pdo->prepare("UPDATE customer SET username = ?, fullname = ?, gender = ?, birthdate = ? WHERE id = ?");
+        return $stmt->execute([$username, $fullname, $gender, $birthdate, $id]);
+    }
+    
 }
 
    

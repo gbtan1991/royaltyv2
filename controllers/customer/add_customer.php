@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try{
         $existingCustomer = $customerModel->getCustomerByUsername($username);
         if($existingCustomer){
-            header("Location: ../../views/customer/add_customer.php?error=Username_exists");
+            header("Location: ../../views/customer/add_customer.php?error=Username exists");
             exit;
         }
     } catch (Exception $e) {
@@ -22,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $success = $customerModel->addCustomer($username, $fullname, $gender, $birthdate);
     if($success){
-        header("Location: ../../views/customer/customer_view.php?success=Customer_added");
-        exit;
+        header("Location: customer_view.php?success=Customer added successfully");
+ exit;
     } else {
-        header("Location: ../../views/customer/add_customer.php?error=Customer_not_added");
+        header("Location: customer_view.php?error=Customer not added");
         exit;
     }
 }

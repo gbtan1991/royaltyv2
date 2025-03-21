@@ -3,6 +3,7 @@ require_once __DIR__ . "/../../config/database.php";
 
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +16,14 @@ require_once __DIR__ . "/../../config/database.php";
 <body>
 
 <h2>Register New Customer</h2>
+
+<?php if(isset($_GET['success'])): ?>
+        <p style="color: green;"><?= htmlspecialchars($_GET['success']) ?></p>
+    <?php endif; ?>
+    <?php if(isset($_GET['error'])): ?>
+        <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
+    <?php endif; ?>
+
 
 <form action="../../controllers/customer/add_customer.php" method="post">
     <label for="username">Username:</label>
@@ -33,6 +42,7 @@ require_once __DIR__ . "/../../config/database.php";
     <input type="date" name="birthdate" id="birthdate" required><br><br>
 
     <button type="submit">Add</button>
+    <a href="../../controllers/customer/customer_view.php">Cancel</a>
 </form>
 </body>
 </html>

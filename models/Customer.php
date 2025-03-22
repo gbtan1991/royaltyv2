@@ -67,6 +67,12 @@ class Customer {
         return $stmt->execute([$id]);
     }
     
+    public function searchCustomer($search){
+        $search = "%$search%";
+        $stmt = $this->pdo->prepare("SELECT * FROM customer WHERE username LIKE ? or fullname LIKE ? ORDER by id DESC");
+        $stmt->execute([$search, $search]);
+        return $stmt->fetchAll();
+    }
 }
 
    

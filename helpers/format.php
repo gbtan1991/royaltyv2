@@ -12,6 +12,6 @@ function formatGender($gender) {
     }
 }
 
-function formatBirthdate($dateTime) {
+function formatShortDate($dateTime) {
     return date('F j, Y', strtotime($dateTime)); 
 }

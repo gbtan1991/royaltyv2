@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ✅ Add the new admin
     $success = $adminModel->addAdmin($username, $password, $role);
     if ($success) {
-        header("Location: ../../views/admin/add_admin.php?success=Admin_added");
+        header("Location: ../../controllers/admin/admin_view.php?success=Admin added");
         exit;
     } else {
         header("Location: ../../views/admin/add_admin.php?error=Failed_to_add_admin");

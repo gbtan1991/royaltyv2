@@ -41,6 +41,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th>Full Name</th>
                 <th>Gender</th>
                 <th>Birth Date</th>
+                <th>Total Points</th>
                 <th>Registered Date</th>
                 <th colspan="2">Actions</th>
             </tr>
@@ -53,8 +54,9 @@ require_once __DIR__ . '/../../helpers/format.php';
                         <td><?= htmlspecialchars($customer['username']) ?></td>
                         <td><?= htmlspecialchars($customer['fullname']) ?></td>
                         <td><?= formatGender($customer['gender']) ?></td>
-                        <td><?= formatBirthdate($customer['birthdate']) ?></td>
-                        <td><?= formatDateTime($customer['created_at']) ?></td>
+                        <td><?= formatShortDate($customer['birthdate']) ?></td>
+                        <td><?= htmlspecialchars($customer['total_points']) ?></td>
+                        <td><?= formatShortDate($customer['created_at']) ?></td>
                         <td><a href="../../controllers/customer/customer_edit.php?id=<?= $customer['id'] ?>">Edit</a>
                         </td>
                         <td><a href="../../controllers/customer/delete_customer.php?id=<?= $customer['id'] ?>" onclick="return confirm('Are you sure you want to delete this cuustomer?')">Delete</a></td>

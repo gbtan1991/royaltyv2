@@ -26,8 +26,9 @@ foreach ($customers as $customer): ?>
         <td><?= htmlspecialchars($customer['username']) ?></td>
         <td><?= htmlspecialchars($customer['fullname']) ?></td>
         <td><?= formatGender($customer['gender']) ?></td>
-        <td><?= formatBirthdate($customer['birthdate']) ?></td>
-        <td><?= formatDateTime($customer['created_at']) ?></td>
+        <td><?= formatShortDate($customer['birthdate']) ?></td>
+        <td><?= htmlspecialchars($customer['total_points']) ?></td>
+        <td><?= formatShortDate($customer['created_at']) ?></td>
         <td><a href="../../controllers/customer/customer_edit.php?id=<?= $customer['id'] ?>">Edit</a>
                         </td>
                         <td><a href="../../controllers/customer/delete_customer.php?id=<?= $customer['id'] ?>" onclick="return confirm('Are you sure you want to delete this cuustomer?')">Delete</a></td>

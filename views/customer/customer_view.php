@@ -72,29 +72,7 @@ require_once __DIR__ . '/../../helpers/format.php';
     <a href="../../views/customer/add_customer.php">Register New Customer</a> |
     <a href="../../views/dashboard.php">Back to Dashboard</a>
 
-    <script>
-        document.getElementById('search-customer').addEventListener('keyup', function() {
-    let query = this.value;
-
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '../../controllers/customer/search_customer.php?search=' + encodeURIComponent(query), true);
-
-    xhr.onload = function() {
-        if (this.status == 200) {
-            document.getElementById('customer-table-body').innerHTML = this.responseText;
-        } else {
-            console.error('AJAX Error. Status: ', xhr.status);
-        }
-    };
-
-    xhr.onerror = function() {
-        console.error('Network Error!');
-    };
-
-    xhr.send();
-});
-
+    <script src="../../assets/js/customer.js">
     </script>
     
 

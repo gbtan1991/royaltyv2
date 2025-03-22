@@ -77,27 +77,7 @@ require_once __DIR__ . '/../../helpers/format.php';
     <a href="../../views/admin/add_admin.php">Add New Admin</a> |
     <a href="../../views/dashboard.php">Back to Dashboard</a>
 
-    <script>
-document.getElementById('search-admin').addEventListener('keyup', function() {
-    let query = this.value;
-    
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '../../controllers/admin/search_admin.php?search=' + encodeURIComponent(query), true);
-
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.getElementById('admin-table-body').innerHTML = xhr.responseText;
-        } else {
-            console.error('AJAX Error. Status: ', xhr.status);
-        }
-    };
-
-    xhr.onerror = function() {
-        console.error('Network Error!');
-    };
-
-    xhr.send();
-});
+    <script src="../../assets/js/admin.js"> 
 </script>
 
 </body>

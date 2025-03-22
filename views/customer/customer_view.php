@@ -53,7 +53,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                         <td><?= formatDateTime($customer['created_at']) ?></td>
                         <td><a href="../../controllers/customer/customer_edit.php?id=<?= $customer['id'] ?>">Edit</a>
                         </td>
-                        <td><a href="../../controllers/customer/customer_delete.php?id=<?= $customer['id'] ?>">Delete</a>
+                        <td><a href="../../controllers/customer/delete_customer.php?id=<?= $customer['id'] ?>" onclick="return confirm('Are you sure you want to delete this cuustomer?')">Delete</a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

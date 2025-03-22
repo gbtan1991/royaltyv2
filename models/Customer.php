@@ -61,6 +61,11 @@ class Customer {
         $stmt = $this->pdo->prepare("UPDATE customer SET username = ?, fullname = ?, gender = ?, birthdate = ? WHERE id = ?");
         return $stmt->execute([$username, $fullname, $gender, $birthdate, $id]);
     }
+
+    public function deleteCustomer($id) {
+        $stmt = $this->pdo->prepare("DELETE FROM customer where id = ?");
+        return $stmt->execute([$id]);
+    }
     
 }
 

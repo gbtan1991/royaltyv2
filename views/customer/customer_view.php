@@ -29,6 +29,10 @@ require_once __DIR__ . '/../../helpers/format.php';
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 
+    <!-- Search Bar -->
+     <input type="text" id="search-customer" placeholder="Search Customer" >
+
+
     <table>
         <thead>
             <tr>
@@ -41,7 +45,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th colspan="2">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="customer-table-body">
             <?php if (!empty($customers)): ?>
                 <?php foreach ($customers as $customer) : ?>
                     <tr>
@@ -67,5 +71,32 @@ require_once __DIR__ . '/../../helpers/format.php';
     <br>
     <a href="../../views/customer/add_customer.php">Register New Customer</a> |
     <a href="../../views/dashboard.php">Back to Dashboard</a>
+
+    <script>
+        document.getElementById('search-customer').addEventListener('keyup', function() {
+    let query = this.value;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../../controllers/customer/search_customer.php?search=' + encodeURIComponent(query), true);
+
+    xhr.onload = function() {
+        if (this.status == 200) {
+            document.getElementById('customer-table-body').innerHTML = this.responseText;
+        } else {
+            console.error('AJAX Error. Status: ', xhr.status);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Network Error!');
+    };
+
+    xhr.send();
+});
+
+    </script>
+    
+
 </body>
 </html>

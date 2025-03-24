@@ -6,7 +6,7 @@ class Transaction {
     private $pdo;
 
 
-    public function __construct(){
+    public function __construct($pdo){
         $this->pdo = $pdo;
     }
 

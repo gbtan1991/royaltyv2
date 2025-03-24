@@ -35,6 +35,8 @@ class Transaction {
             JOIN customer c ON t.customer_id = c.id
             JOIN admin a ON t.admin_id = a.id
             ORDER BY t.transaction_date DESC
+            ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+    

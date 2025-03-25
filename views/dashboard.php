@@ -88,7 +88,7 @@ $customerCount = $customerModel->getCustomerCount();
     <!-- <a href="../controllers/admin/test.php">Test</a> -->
     <a href="../controllers/admin/admin_view.php">Manage Admin Accounts</a>
     <?php endif; ?>
-    <a href="../views/transaction/transaction_view.php">Manage Transactions</a>
+    <a href="../controllers/transaction/transaction_view.php">Manage Transactions</a>
     <a href="../public/logout.php">Logout</a>
     
 </body>

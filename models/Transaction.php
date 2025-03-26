@@ -25,4 +25,14 @@ class Transaction {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function addTransaction($customer_id, $admin_id, $total_amount) {
+        $stmt = $this->pdo->prepare("
+            INSERT INTO transaction (customer_id, admin_id, total_amount) 
+            VALUES (?, ?, ?)
+        ");
+        
+        return $stmt->execute([$customer_id, $admin_id, $total_amount]);
+    }
+
+
 }

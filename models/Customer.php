@@ -73,6 +73,12 @@ class Customer {
         $stmt->execute([$search, $search]);
         return $stmt->fetchAll();
     }
+
+
+    public function updateCustomerPoints($customer_id, $points) {
+        $stmt = $this->pdo->prepare("UPDATE customer SET total_points = total_points + ? WHERE id = ?");
+        return $stmt->execute([$points, $customer_id]);
+    }
 }
 
    

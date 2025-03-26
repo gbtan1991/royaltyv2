@@ -56,6 +56,7 @@ require_once '../../helpers/format.php';
     </table>
 
     <br>
+    <a href="../../views/transaction/add_transaction.php">Add Transaction</a>
     <a href="../../views/dashboard.php">Back to Dashboard</a>
 
 </body>

@@ -2,11 +2,10 @@
 require_once __DIR__ . '/../../models/Admin.php';
 require_once __DIR__ . '/../../config/database.php';
 
-// session_start();
-// if (!isset($_SESSION['admin'])) {
-//     header('Location: ../public/login.php');
-//     exit();
-// }
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: ../../public/login.php');
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];

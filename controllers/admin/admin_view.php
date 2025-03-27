@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../config/session.php';  // Session start
 require_once __DIR__ . '/../../models/Admin.php';   // Admin model
 
 // Check if user is logged in
-if (!isset($_SESSION['admin'])) {
-    header('Location: ../public/login.php');
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: ../../public/login.php');
     exit();
 }
 

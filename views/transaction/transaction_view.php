@@ -2,6 +2,10 @@
 
 require_once '../../helpers/format.php';
 
+if(!isset($_SESSION['admin_id'])){
+    header('Location: public/login.php');
+    exit();
+}
 
 ?>
 

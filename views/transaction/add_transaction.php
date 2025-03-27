@@ -11,6 +11,8 @@ if (!isset($_SESSION['admin'])) {
 
 $customerModel = new Customer($pdo);
 $customers = $customerModel->getAllCustomers();
+
+
 ?>
 
 <!DOCTYPE html>

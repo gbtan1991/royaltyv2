@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../models/Admin.php';
 
 
 // Check if user is logged in and has superadmin role
-if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
+if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'superadmin') {
     header('Location: ../../public/login.php');
     exit();
 }

@@ -5,8 +5,8 @@ require_once __DIR__ . '/../config/session.php';
 require_once __DIR__ . '/../models/Customer.php';
 require_once __DIR__ . '/../helpers/format.php';
 
-if(!isset($_SESSION['admin'])){
-    header('Location: login.php');
+if(!isset($_SESSION['admin_id'])){
+    header('Location: ../public/login.php');
     exit();
 }
 

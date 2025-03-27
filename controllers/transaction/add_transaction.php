@@ -4,15 +4,17 @@ require_once __DIR__ . '/../../models/Transaction.php';
 require_once __DIR__ . '/../../models/Customer.php';
 require_once __DIR__ . '/../../config/session.php';
 
-// Ensure admin is logged in
-if (!isset($_SESSION['admin']) || !is_array($_SESSION['admin'])) {
-    die("Session error: Admin not logged in.");
+if(!isset($_SESSION['admin_id'])){
+    header('Location: public/login.php');
+    exit();
 }
 
-$admin_id = $_SESSION['admin']['id']; // Getting the admin's ID
+
+ // Getting the admin's ID
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $customer_id = $_POST['customer_id'];
+    $admin_id = $_SESSION['admin_id'];
     $total_amount = $_POST['total_amount'];
 
     // Validate input
@@ -30,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pointsEarned = floor($total_amount / 5); // 5 pesos = 30 mins = 1 point
         $customerModel->updateCustomerPoints($customer_id, $pointsEarned);
 
-        header("Location: ../../views/transaction/transaction_view.php?success=Transaction added successfully");
+        header("Location: ../../controllers/transaction/transaction_view.php?success=Transaction added successfully");
         exit;
     } else {
-        header("Location: ../../views/transaction/add_transaction.php?error=Failed to add transaction");
+        header("Location: ../../controllers/transaction/add_transaction.php?error=Failed to add transaction");
         exit;
     }
 } else {

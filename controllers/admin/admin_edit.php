@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../models/Admin.php';
 require_once __DIR__ . '/../../config/session.php'; // Always handle session
 
 // ✅ Check if logged in and is superadmin
-if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
+if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'superadmin') {
     header('Location: ../../public/login.php');
     exit;
 }

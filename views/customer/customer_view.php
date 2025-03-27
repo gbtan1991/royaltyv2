@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th>Full Name</th>
                 <th>Gender</th>
                 <th>Birth Date</th>
-                <th>Total Points</th>
+                <th>Accumulated Time</th>
                 <th>Registered Date</th>
                 <th colspan="2">Actions</th>
             </tr>
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                         <td><?= htmlspecialchars($customer['fullname']) ?></td>
                         <td><?= formatGender($customer['gender']) ?></td>
                         <td><?= formatShortDate($customer['birthdate']) ?></td>
-                        <td><?= htmlspecialchars($customer['total_points']) ?></td>
+                        <td><?= formatHoursFromPoints($customer['total_points']) ?></td>
                         <td><?= formatShortDate($customer['created_at']) ?></td>
                         <td><a href="../../controllers/customer/customer_edit.php?id=<?= $customer['id'] ?>">Edit</a>
                         </td>

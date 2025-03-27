@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/session.php';
 require_once __DIR__ . '/../models/Customer.php';
+require_once __DIR__ . '/../models/Transaction.php';
 require_once __DIR__ . '/../helpers/format.php';
 
 if(!isset($_SESSION['admin_id'])){
@@ -13,9 +14,12 @@ if(!isset($_SESSION['admin_id'])){
 // Fetching Customers
 
 $customerModel = new Customer($pdo);
+$transactionModel = new transaction($pdo);
 
 $customers = $customerModel->getLatestCustomers();
 $customerCount = $customerModel->getCustomerCount();
+$latestTransaction = $transactionModel->getLatestTransaction();
+
 
 ?>
 
@@ -52,6 +56,7 @@ $customerCount = $customerModel->getCustomerCount();
     <a href="../views/customer/add_customer.php">Add Customer</a>
     <a href="../controllers/customer/customer_view.php">View List</a>    
     </div>
+    <h3>Latest Customers</h3>
     <table>
         <thead>
             <tr>
@@ -59,6 +64,7 @@ $customerCount = $customerModel->getCustomerCount();
                 <th>Username</th>
                 <th>Full Name</th>
                 <th>Gender</th>
+                
                
               
             </tr>

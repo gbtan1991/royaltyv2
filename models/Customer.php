@@ -79,6 +79,21 @@ class Customer {
         $stmt = $this->pdo->prepare("UPDATE customer SET total_points = total_points + ? WHERE id = ?");
         return $stmt->execute([$points, $customer_id]);
     }
+
+    public function getTopCustomerPoints($limit = 5) {
+        $stmt = $this->pdo->prepare(
+            "SELECT 
+                id,
+                username,
+                total_points
+            FROM customer
+            ORDER BY total_points DESC
+            LIMIT ?"
+        );
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch multiple top customers
+    }
 }
 
    

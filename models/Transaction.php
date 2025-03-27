@@ -35,24 +35,9 @@ class Transaction {
         return $stmt->execute([$customer_id, $admin_id, $total_amount]);
     }
 
-    public function getLatestTransaction($limit = 3) {
-        $stmt = $this->pdo->prepare(
-            "SELECT 
-                t.id,
-                c.username as customer_name,
-                a.username as admin_username,
-                t.total_amount,
-                t.transaction_date
-            FROM transaction t
-            JOIN customer c ON t.customer_id = c.id
-            JOIN admin a ON t.admin_id = a.id
-            ORDER BY t.transaction_date DESC
-            "
-        );
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-        
-    }
+   
+    
 
+    
 
 }

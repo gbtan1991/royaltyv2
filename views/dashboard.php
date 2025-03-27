@@ -18,7 +18,7 @@ $transactionModel = new transaction($pdo);
 
 $customers = $customerModel->getLatestCustomers();
 $customerCount = $customerModel->getCustomerCount();
-$latestTransaction = $transactionModel->getLatestTransaction();
+$topCustomers = $customerModel->getTopCustomerPoints(3); 
 
 
 ?>
@@ -56,6 +56,8 @@ $latestTransaction = $transactionModel->getLatestTransaction();
     <a href="../views/customer/add_customer.php">Add Customer</a>
     <a href="../controllers/customer/customer_view.php">View List</a>    
     </div>
+    <div style="display: flex; gap: 20px">
+    <div>
     <h3>Latest Customers</h3>
     <table>
         <thead>
@@ -64,10 +66,7 @@ $latestTransaction = $transactionModel->getLatestTransaction();
                 <th>Username</th>
                 <th>Full Name</th>
                 <th>Gender</th>
-                
-               
-              
-            </tr>
+           </tr>
         </thead>
         <tbody>
             <?php if (!empty($customers)): ?>
@@ -88,8 +87,41 @@ $latestTransaction = $transactionModel->getLatestTransaction();
             <?php endif; ?>
         </tbody>
     </table>
+    </div>
+    <div>
 
-
+        <h3>Top Customers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Accumulated Time (Hours)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($topCustomers)): ?>
+                    <?php foreach ($topCustomers as $customer): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($customer['id']) ?></td>
+                            <td><?= htmlspecialchars($customer['username']) ?></td>
+                            <td><?= formatHoursFromPoints($customer['total_points']) ?></td>
+                            <!-- Assuming each 1 point = 30 mins, so total_points / 2 gives hours -->
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3">No top customers found.</td>
+                            </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+                    
+                </div>
+                
+                
+                
     <?php if($_SESSION['role'] == "superadmin"): ?>
     <!-- <a href="../controllers/admin/test.php">Test</a> -->
     <a href="../controllers/admin/admin_view.php">Manage Admin Accounts</a>

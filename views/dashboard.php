@@ -48,7 +48,7 @@ $customerCount = $customerModel->getCustomerCount();
     
 
     <div style="display: flex; align-items: center; justify-content: space-between;">
-    <h3>Latest Customers</h3>
+    
     <a href="../views/customer/add_customer.php">Add Customer</a>
     <a href="../controllers/customer/customer_view.php">View List</a>    
     </div>

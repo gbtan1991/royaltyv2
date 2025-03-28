@@ -52,6 +52,6 @@ $customers = $customerModel->getAllCustomers();
     </form>
 
     <br>
-    <a href="transaction_view.php">View Transactions</a>
+    <a href="../../controllers/transaction/transaction_view.php">View Transactions</a>
 </body>
 </html>

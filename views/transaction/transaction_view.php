@@ -38,6 +38,7 @@ if(!isset($_SESSION['admin_id'])){
                 <th>Processed By</th>
                 <th>Total Amount</th>
                 <th>Transaction Date</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +50,12 @@ if(!isset($_SESSION['admin_id'])){
                         <td><?= htmlspecialchars($transaction['admin_username']) ?></td>
                         <td><?= htmlspecialchars($transaction['total_amount']) ?></td>
                         <td><?= formatDateTime($transaction['transaction_date']) ?></td>
+                        <td>
+    <a href="../../controllers/transaction/delete_transaction.php?id=<?= $transaction['id'] ?>"
+       onclick="return confirm('Are you sure you want to delete this transaction?')">
+       Delete
+    </a>
+</td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

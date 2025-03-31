@@ -36,8 +36,27 @@ class Transaction {
     }
 
    
+    public function deleteTransaction($transactionId) {
+        // Get transaction details before deleting
+        $stmt = $this->pdo->prepare("SELECT * FROM transaction WHERE id = ?");
+        $stmt->execute([$transactionId]);
+        $transaction = $stmt->fetch(PDO::FETCH_ASSOC);
     
-
+        if (!$transaction) {
+            return false; // Transaction not found
+        }
+    
+        // Calculate points to subtract
+        $pointsToDeduct = floor($transaction['total_amount'] / 5);
+    
+        // Update customer's total points
+        $stmt = $this->pdo->prepare("UPDATE customer SET total_points = total_points - ? WHERE id = ?");
+        $stmt->execute([$pointsToDeduct, $transaction['customer_id']]);
+    
+        // Delete the transaction
+        $stmt = $this->pdo->prepare("DELETE FROM transaction WHERE id = ?");
+        return $stmt->execute([$transactionId]);
+    }
     
 
 }

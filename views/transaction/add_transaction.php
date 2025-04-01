@@ -38,7 +38,7 @@ $customers = $customerModel->getAllCustomers();
             <option value="">-- Select Customer --</option>
             <?php foreach ($customers as $customer): ?>
                 <option value="<?= $customer['id'] ?>">
-                    <?= htmlspecialchars($customer['fullname']) ?> (Points: <?= $customer['total_points'] ?>)
+                    <?= htmlspecialchars($customer['username']) ?> (Points: <?= $customer['total_points'] ?>)
                 </option>
             <?php endforeach; ?>
         </select>

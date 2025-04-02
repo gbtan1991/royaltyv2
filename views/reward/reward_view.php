@@ -54,7 +54,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                             <td><?= htmlspecialchars($rewards['required_points']) ?></td>
                             <td><?= htmlspecialchars($rewards['reward_description']) ?></td>
                             <td><?= formatDateTime($rewards['created_at']) ?></td>
-                            <td><a href="">Edit</a></td>
+                            <td><a href="../../controllers/reward/reward_edit.php?id=<?= $rewards['id'] ?>">Edit</a></td>
                             <td><a href="">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>

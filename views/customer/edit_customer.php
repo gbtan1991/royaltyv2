@@ -13,7 +13,10 @@ require_once __DIR__ . '/../../config/session.php';
 
     <h2>Edit Customer</h2>
 
-    <?php if (isset($_GET['error'])): ?>
+    <?php if(isset($_GET['success'])): ?>
+        <p style="color: green;"><?= htmlspecialchars($_GET['success']) ?></p>
+    <?php endif; ?>
+    <?php if(isset($_GET['error'])): ?>
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 

@@ -32,7 +32,7 @@ class Reward {
     // Update reward
     public function updateReward($id, $reward_name, $required_points, $reward_description) {
         $stmt = $this->pdo->prepare(
-            "UPDATE reward SET reward_name = ?, required_points = ?, reward_description = ?, modified_at = NOW() WHERE id = ?"
+            "UPDATE reward SET reward_name = ?, required_points = ?, reward_description = ? WHERE id = ?"
         );
         return $stmt->execute([$reward_name, $required_points, $reward_description, $id]);
     }

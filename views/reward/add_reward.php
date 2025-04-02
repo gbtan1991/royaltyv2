@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../config/database.php';
     <h2>Add New Rewards</h2>
 
     
-<?php if(isset($_GET['success'])): ?>
+    <?php if(isset($_GET['success'])): ?>
         <p style="color: green;"><?= htmlspecialchars($_GET['success']) ?></p>
     <?php endif; ?>
     <?php if(isset($_GET['error'])): ?>
@@ -33,7 +33,7 @@ require_once __DIR__ . '/../../config/database.php';
         <label for="reward_description">Reward Description:</label>
         <textarea id="reward_description" name="reward_description" required></textarea><br><br>
         <input type="submit" value="Add Reward">
-        <a href="reward_list.php">Back to Reward List</a>
+        <a href="../../controllers/reward/reward_view.php">Back to Reward List</a>
     </form> 
     
 </body>

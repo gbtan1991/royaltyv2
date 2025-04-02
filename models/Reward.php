@@ -31,10 +31,13 @@ class Reward {
 
     // Update reward
     public function updateReward($id, $reward_name, $required_points, $reward_description) {
-        $stmt = $this->pdo->prepare("UPDATE reward SET reward_name = ?, required_points = ?, reward_description = ?, modified_at = NOW() WHERE id = ?");
-        return $stmt->execute([$id, $reward_name, $required_points, $reward_description]);
+        $stmt = $this->pdo->prepare(
+            "UPDATE reward SET reward_name = ?, required_points = ?, reward_description = ?, modified_at = NOW() WHERE id = ?"
+        );
+        return $stmt->execute([$reward_name, $required_points, $reward_description, $id]);
     }
-
+    
+    // Delete reward
     public function deleteReward($id) {
         $stmt = $this->pdo->prepare("DELETE FROM reward WHERE id = ?");
         return $stmt->execute([$id]);

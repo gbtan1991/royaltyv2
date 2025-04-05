@@ -128,6 +128,7 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
     <?php endif; ?>
     <a href="../controllers/transaction/transaction_view.php">Manage Transactions</a>
     <a href="../controllers/reward/reward_view.php">Manage Rewards</a>
+    <a href="../controllers/claim/claim_view.php">View Claims</a>
     <a href="../public/logout.php">Logout</a>
     
 </body>

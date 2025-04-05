@@ -9,6 +9,6 @@ if (!isset($_SESSION['admin'])){
 }
 
 $customerModel = new Customer($pdo);
-$customers = $customerModel->getAllCustomers(); // ✅ Corrected variable name
+$customers = $customerModel->getAllCustomers(); // Fetch all customers
 
 require_once __DIR__ . '/../../views/customer/customer_view.php'; // ✅ Corrected file name

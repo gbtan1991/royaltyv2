@@ -94,6 +94,12 @@ class Customer {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch multiple top customers
     }
+
+    public function getAllCustomerByPoints() {
+        $stmt = $this->pdo->prepare("SELECT * FROM customer ORDER BY total_points DESC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all customers ordered by points
+    }
 }
 
    

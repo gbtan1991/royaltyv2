@@ -29,7 +29,7 @@ require_once __DIR__ . '/../../config/session.php';
         <input type="number" id="required_points" name="required_points" value="<?= htmlspecialchars($reward['required_points']) ?>" required><br><br>
 
         <label for="reward_description">Reward Description:</label>
-        <input type="text" id="reward_description" name="reward_description" value="<?= htmlspecialchars($reward['reward_description']) ?>" required><br><br>
+        <textarea  id="reward_description" name="reward_description" value="<?= htmlspecialchars($reward['reward_description']) ?>" required></textarea>    <br><br>
         
         <button type="submit">Save Changes</button>
     </form>

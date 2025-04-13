@@ -55,7 +55,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                             <td><?= htmlspecialchars($rewards['reward_description']) ?></td>
                             <td><?= formatDateTime($rewards['created_at']) ?></td>
                             <td><a href="../../controllers/reward/reward_edit.php?id=<?= $rewards['id'] ?>">Edit</a></td>
-                            <td><a href="">Delete</a></td>
+                            <td><a href="../../controllers/reward/delete_reward.php?id=<?= $rewards['id'] ?>" onclick="return confirm('Are you sure you want to delete this reward?')">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../helpers/format.php';
 require_once __DIR__ . '/../../config/session.php';
 require_once __DIR__ . '/../../models/Claim.php';
 

@@ -35,4 +35,6 @@ class Claim {
         $stmt = $this->pdo->prepare('INSERT INTO claim (customer_id, admin_id, reward_id, points_used, remarks) VALUES (?, ?, ?, ?, ?)');
         return $stmt->execute([$customer_id, $admin_id, $reward_id, $points_used, $remarks]);
     }
+
+    
 }

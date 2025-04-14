@@ -53,7 +53,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                         <td><?= htmlspecialchars($claim['admin_username']) ?></td>
                         <td><?= htmlspecialchars($claim['reward_name']) ?></td>
                         <td><?= htmlspecialchars($claim['points_used']) ?></td>
-                        <td><?= htmlspecialchars($claiom['claim_date']) ?></td>
+                        <td><?= htmlspecialchars($claim['claim_date']) ?></td>
                         <td><?= htmlspecialchars($claim['claim_status']) ?></td>
                         <td><?= htmlspecialchars($claim['remarks']) ?></td>
                         <td><a href="edit_claim.php?id=<?= htmlspecialchars($claim['id']) ?>">Edit</a></td>

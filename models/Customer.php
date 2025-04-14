@@ -100,6 +100,12 @@ class Customer {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all customers ordered by points
     }
+
+    public function deductPoints($customer_id, $points){
+        $stmt = $this->pdo->prepare("UPDATE customer SET total_points = total_points - ? WHERE id = ?");
+        return $stmt->execute([$points, $customer_id]);
+        
+    }
 }
 
    

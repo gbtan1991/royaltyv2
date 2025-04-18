@@ -14,11 +14,13 @@ if (isset($_SESSION['admin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <title>Login</title>
 </head>
 <body>
 
-<div class="login-container">
+<div class="login-page-container">
+    <div class="login-container">
     <h2>Royalty - Admin Login</h2>
 
     <?php if (isset($_GET['error'])): ?>
@@ -31,6 +33,6 @@ if (isset($_SESSION['admin'])) {
         <button type="submit">Login</button>
     </form>
 </div>
-
+</div>
 </body>
 </html>

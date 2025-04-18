@@ -1,1 +1,16 @@
 @import url('reset.css');
+@import url('variables.css');
+
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color:var(--vista-white);
+    color: var(--ink);
+   
+}
+
+.login-page-container {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}

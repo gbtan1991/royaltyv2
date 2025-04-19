@@ -1,0 +1,10 @@
+/* variables css */
+
+:root{
+    --purple : hsla(294, 83%, 27%, 1);
+    --selective-yellow : hsla(44, 98%, 50%, 1);
+    --canary : hsla(58, 100%, 50%, 1);
+    --black : hsla(0, 0%, 0%, 1);
+    --white : hsla(0, 0%, 100%, 1);
+}
+

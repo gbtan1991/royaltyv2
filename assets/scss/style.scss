@@ -6,15 +6,20 @@ body{
     font-family: 'Ubuntu', sans-serif;
     background-color: $vista-white;
     color: $black;
+
     
+ 
 }
 
+
 .login-container{
+    background: url("../image/purple-bg.jpg") no-repeat center center fixed;
     display: grid;
     place-content: center;
     height: 100vh;
-
+    
     .container{
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -71,3 +76,60 @@ body{
     }
     
 }
+
+.dashboard-container{
+    background: url(../image/purple-bg.jpg) no-repeat center center fixed;
+    height: 100vh;
+    
+
+    .sidebar{
+        background-color: $alabaster;
+        width: 15%;
+        height: 100vh;
+        position: fixed;
+        z-index: 1;
+
+        .sidebar-header{
+            display: grid;
+            place-content: center;
+            height: 10rem;
+
+            .sidebar-logo{
+                width: 5rem;
+                
+            }
+        
+        }
+    }
+
+    .dashboard-content{
+        margin-left: 15%;
+        width: 85%;
+        
+
+        .dashboard-header{
+            background-color: $purple;
+            color: $bone;
+            padding-left: 1rem;
+            padding-right: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .admin-details{
+                font-size: 0.9rem;
+            }
+    
+        }
+    }
+
+
+}
+
+  
+
+    
+    
+
+
+

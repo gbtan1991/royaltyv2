@@ -5,6 +5,7 @@ require_once __DIR__ . '/../config/session.php';
 require_once __DIR__ . '/../models/Customer.php';
 require_once __DIR__ . '/../models/Transaction.php';
 require_once __DIR__ . '/../helpers/format.php';
+require_once __DIR__ . '/../helpers/randomizer.php';
 
 if(!isset($_SESSION['admin_id'])){
     header('Location: ../public/login.php');
@@ -57,17 +58,26 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
         <div class="dashboard-content">
             <header class="dashboard-header">
             <div>
-            <h2>Welcome! <?= htmlspecialchars($_SESSION['admin']) ?></h2>
-            </div>
+            <h1 class="page-title">Dashboard</h1>  
+        </div>
             
             <div class="sidebar-settings">
-            <i class="fa-regular fa-gear"></i>
-            
-  
-            <div class="admin-details">
-            <p>ID: <?= htmlspecialchars($_SESSION['admin_id']) ?></p>
-            <p>Role: <?= htmlspecialchars($_SESSION['role']) ?></p>
-            </div>
+                
+                <p><i class="fa-solid fa-user"></i> <?= formatAdmin($_SESSION['admin']) ?></p>
+                
+                <div class="admin-details">
+                    <p>ID: <?= htmlspecialchars($_SESSION['admin_id']) ?></p>
+                    <p>Role: <?= formatRole($_SESSION['role']) ?></p>
+                </div>
+                <div class="settings-container">
+                <i class="fa-solid fa-gear settings-icon" id="settingsToggle"></i>
+                <div class="settings-dropdown" id="settingsDropdown">
+                        <div class="settings-wrapper">
+                        <a href="#">Settings</a>
+                        <a href="../public/logout.php">Logout</a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
@@ -170,6 +180,6 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
                 </div>
                     
                 </div>
-                
+                <script src="../assets/js/dashboard.js"></script>
             </body>
             </html>

@@ -23,3 +23,18 @@ function formatHoursFromPoints($totalPoints) {
 
     return sprintf("%d hr %d min", $hours, $minutes);
 }
+
+function formatRole($role){
+    switch(strtolower($role)){
+        case 'superadmin':
+            return 'Super Administrator';
+        case 'admin':
+            return 'Administrator';
+        default:
+            return 'Unknown Role';
+    }
+}
+
+function formatAdmin($admin){
+    return ucfirst(htmlspecialchars(strtolower( trim($admin))));
+}

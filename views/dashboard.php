@@ -12,6 +12,11 @@ if(!isset($_SESSION['admin_id'])){
     exit();
 }
 
+
+// Page Title
+
+$pageTitle = 'Dashboard';
+
 // Fetching Customers
 
 $customerModel = new Customer($pdo);
@@ -24,29 +29,9 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="https://kit.fontawesome.com/266a593bd6.js" crossorigin="anonymous"></script>
-    <title>Royalty - Dashboard</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
     
-
-    <div class="dashboard-container">
+<?php include __DIR__ . '../../partials/header.php'; ?>
+    
        
         <aside class="sidebar">
             <div class="sidebar-header">
@@ -56,40 +41,11 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
         </aside>
     
         <div class="dashboard-content">
-            <header class="dashboard-header">
-            <div>
-            <h1 class="page-title">Dashboard</h1>  
-        </div>
-            
-            <div class="sidebar-settings">
-                
-                <p><i class="fa-solid fa-user"></i> <?= formatAdmin($_SESSION['admin']) ?></p>
-                
-                <div class="admin-details">
-                    <p>ID: <?= htmlspecialchars($_SESSION['admin_id']) ?></p>
-                    <p>Role: <?= formatRole($_SESSION['role']) ?></p>
-                </div>
-                <div class="settings-container">
-                <i class="fa-solid fa-gear settings-icon" id="settingsToggle"></i>
-                <div class="settings-dropdown" id="settingsDropdown">
-                        <div class="settings-wrapper">
-                        <a href="#">Settings</a>
-                        <a href="../public/logout.php">Logout</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-          
-            </header>
-            
-
+         
             
             
             
-            
-    <div >
+    
         <h3>Total Customers</h3>
         <p><?= htmlspecialchars($customerCount) ?></p>
     </div>

@@ -29,7 +29,9 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
 
 ?>
 
+
     
+
 <?php include __DIR__ . '../../partials/header.php'; ?>
     
        

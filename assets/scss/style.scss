@@ -1,11 +1,13 @@
 @import 'base/reset';
 @import 'utils/variables';
+@import 'layout/header';
 
 
 body{
     font-family: 'Ubuntu', sans-serif;
-    background-color: $vista-white;
+    background: url("../image/purple-bg.jpg") no-repeat center center fixed;
     color: $black;
+    height: 100vh;
 
     
  
@@ -13,7 +15,6 @@ body{
 
 
 .login-container{
-    background: url("../image/purple-bg.jpg") no-repeat center center fixed;
     display: grid;
     place-content: center;
     height: 100vh;
@@ -77,10 +78,7 @@ body{
     
 }
 
-.dashboard-container{
-    background: url(../image/purple-bg.jpg) no-repeat center center fixed;
-    height: 100vh;
-    
+
 
     .sidebar{
         background-color: $alabaster;
@@ -103,9 +101,7 @@ body{
         }
     }
 
-    .dashboard-content{
-        margin-left: 15%;
-        width: 85%;
+   
         
 
         .dashboard-header{
@@ -178,26 +174,24 @@ body{
 
             }
 
-            .page-title{
-                font-size: 1.5rem;
-                font-weight: 600;
-            }
-
-            .admin-details{
-                font-size: 0.9rem;
-                display: flex;
-                flex-direction: row;
-                gap: 1rem;
-                
-            }
+          
 
             
     
         }
-    }
+    
 
 
-}
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
 
   
 

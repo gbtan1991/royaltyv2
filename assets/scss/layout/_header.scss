@@ -1,0 +1,100 @@
+
+
+.header{
+    background-color: $purple;
+    color: $bone;
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-left: 15%;
+    width: 85%;
+
+    .settings{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+
+
+        .settings-container{
+            display: inline-block;
+            position: relative;
+
+            .settings-icon{
+                cursor: pointer;
+                color: $bone;
+            }
+            .settings-icon:hover{
+                color: $selective-yellow;
+            }
+            .settings-dropdown {
+                display: none;
+                position: absolute;
+                right: -70%;
+                top: 150%;
+                min-width: 150px;
+                background-color: $alabaster;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                z-index: 10;
+
+                .settings-wrapper{
+                    display:flex;
+                    flex-direction: column;
+                
+                    a {
+                        display: block;
+                        padding: 10px;
+                        text-decoration: none;
+                        color: $ink;
+
+                       
+                    }
+
+                    a:hover{
+                        background-color: $selective-yellow;
+                        color: $ink;
+
+                    }
+                
+                }
+
+                
+
+            }
+
+            
+       }
+
+       .admin-name{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3rem;
+
+            .icon-user{
+                font-size: 0.8rem;
+            }
+       }
+
+       .page-title{
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .admin-details{
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        
+    }
+
+
+    }
+
+
+
+}

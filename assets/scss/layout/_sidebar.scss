@@ -1,0 +1,60 @@
+
+
+.sidebar{
+    background-color: $alabaster;
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+    top: 0;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+
+    .sidebar-header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 10rem;
+        
+
+        .sidebar-logo{
+            width: 5rem;
+            
+        }
+    
+    }
+
+    .sidebar-nav{
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        
+
+        .nav-button{
+            width: 100%;
+            padding: 1rem;
+            background-color: $alabaster;
+            color: $purple;
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            text-decoration: none;
+
+            
+        }
+
+        .nav-button:hover{
+            background-color: $purple;
+            color: $selective-yellow;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+    }
+
+    
+}

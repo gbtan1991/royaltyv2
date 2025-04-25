@@ -16,6 +16,7 @@ if(!isset($_SESSION['admin_id'])){
 // Page Title
 
 $pageTitle = 'Dashboard';
+$currentPage = 'dashboard';
 
 // Fetching Customers
 
@@ -125,6 +126,6 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
                 </div>
     
                 </div>  
-                <script src="../assets/js/dashboard.js"></script>
-            </body>
-            </html>
+              
+
+<?php include __DIR__ . '../../partials/footer.php'; ?>

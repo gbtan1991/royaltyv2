@@ -38,8 +38,7 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
        
        
          
-            
-      <div class="main-content">
+<div class="main-content">
 
           
             
@@ -119,18 +118,7 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
             
             
             
-            <div class="sidebar-nav">
-                <?php if($_SESSION['role'] == "superadmin"): ?>
-                    <a href="../controllers/admin/admin_view.php">Manage Admin Accounts</a>
-                    <?php endif; ?>
-                    <a href="../controllers/transaction/transaction_view.php">Manage Transactions</a>
-                    <a href="../controllers/reward/reward_view.php">Manage Rewards</a>
-                    <a href="../controllers/claim/claim_view.php">View Claims</a>
-                    <a href="../public/logout.php">Logout</a>     
-                    
-                    
-                    
-                </div>
+           
                     
                 </div>
 

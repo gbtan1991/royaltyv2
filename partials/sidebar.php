@@ -27,7 +27,6 @@
         if ($_SESSION['role'] == 'superadmin') {
             
             $manageAdmin = ['href' => '../controllers/admin/admin_view.php', 'label' => 'Manage Admin Accounts', 'logo' => 'fa-solid fa-user-tie'];
-
             array_splice($navItems, 4, 0, [$manageAdmin]);
           
         }

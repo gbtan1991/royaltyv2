@@ -1,0 +1,22 @@
+.footer {
+    background-color: $bone;
+    height: 3rem;
+    width: 85%;
+    padding-right: 1.5rem;
+    z-index: -1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+
+    .date-time{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+
+    }
+}

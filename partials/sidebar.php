@@ -18,18 +18,20 @@
             ['href' => '/royaltyv2/views/dashboard.php', 'label' => 'Dashboard', 'logo' => 'fa-solid fa-chart-simple'],
             ['href' => '../controllers/customer/customer_view.php', 'label' => 'Manage Customers', 'logo' => 'fa-solid fa-users'],
             ['href' => '../controllers/transaction/transaction_view.php', 'label' => 'Manage Transactions', 'logo' => 'fa-solid fa-handshake-simple'],
+            ['href' => '../controllers/claim/claim_view.php', 'label' => 'View Claims', 'logo' => 'fa-solid fa-certificate'],
             ['href' => '../controllers/reward/reward_view.php', 'label' => 'Manage Rewards', 'logo' => 'fa-solid fa-gift'],
-            ['href' => '../public/logout.php', 'label' => 'Logout', 'logo' => 'fa-solid fa-right-from-bracket'],
-            ['href' => '../controllers/claim/claim_view.php', 'label' => 'View Claims']
-
+            ['href' => '../public/logout.php', 'label' => 'Logout', 'logo' => 'fa-solid fa-right-from-bracket']
+            
         ];
 
         if ($_SESSION['role'] == 'superadmin') {
-            
+            $insertIndex = count($navItems) - 1; // Insert before the last item (Logout)
             $manageAdmin = ['href' => '../controllers/admin/admin_view.php', 'label' => 'Manage Admin Accounts', 'logo' => 'fa-solid fa-user-tie'];
-            array_splice($navItems, 4, 0, [$manageAdmin]);
+            array_splice($navItems, $insertIndex, 0, [$manageAdmin]);
           
         }
+
+        
 
 
         foreach ($navItems as $navItem){

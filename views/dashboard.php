@@ -33,24 +33,19 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
     
 
 <?php include __DIR__ . '../../partials/header.php'; ?>
+<?php include __DIR__ . '../../partials/sidebar.php'; ?>
     
        
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <img src="../assets/image/royalty-logo.png" alt="Royalty Logo" class="sidebar-logo">
-            </div>
-               
-        </aside>
-    
-        <div class="dashboard-content">
+       
          
             
-            
+      <div class="main-content">
+
+          
             
     
         <h3>Total Customers</h3>
         <p><?= htmlspecialchars($customerCount) ?></p>
-    </div>
     
     
     <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -138,6 +133,10 @@ $topCustomers = $customerModel->getTopCustomerPoints(3);
                 </div>
                     
                 </div>
+
+                </div>
+    
+                </div>  
                 <script src="../assets/js/dashboard.js"></script>
             </body>
             </html>

@@ -24,12 +24,47 @@ $customerModel = new Customer($pdo);
 $transactionModel = new transaction($pdo);
 
 $customers = $customerModel->getLatestCustomers();
+$topCustomers = $customerModel->getTopCustomerPoints(3);
+
+
+//M Mini Cards Functions
+
+$todaysTransactions = $transactionModel->getTodaysTotalAmount(); 
+$weeklyTransactions = $transactionModel->getWeeklyTotalAmount();
 $customerCount = $customerModel->getCustomerCount();
-$topCustomers = $customerModel->getTopCustomerPoints(3); 
+$newCustomerLastThreeDays = $customerModel->getNewCustomersLastThreeDays();
+$customerTotalPoints = $customerModel->getAllCustomerPoints();
+    
+
+//  Mini Card Data
+$miniCards = [
+     ['label' => "Today's Earnings", 'content' =>"P " . $todaysTransactions['total_amount'], 'logo' => 'fa-solid fa-money-bill-wave', 'iconPosition' => 'left'],
+     ['label' => 'Weekly Earnings', 'content' =>"P " . $weeklyTransactions['total_amount'], 'logo' => 'fa-solid fa-chart-simple', 'iconPosition' => 'right'],
+     ['label' => 'Points can be redeemed', 'content' => $customerTotalPoints['total_points'], 'logo' => 'fa-solid fa-coins', 'iconPosition' => 'left'],
+     ['label' => 'New Customers', 'content' => $newCustomerLastThreeDays['new_customers'], 'logo' => 'fa-solid fa-user-plus', 'iconPosition' => 'left'],
+     ['label' => 'Total Customers', 'content' => $customerCount, 'logo' => 'fa-solid fa-users', 'iconPosition' => 'left']
+
+];
+
+
+// CARDS
+
+$dailyEarnings = $transactionModel->getDailyEarningsThisMonth();
+
+// Preparing data for the chart
+
+$days = [];
+$totals = [];
+
+foreach ($dailyEarnings as $dailyEarning) {
+    $days[] = $dailyEarning['day'];
+    $totals[] = $dailyEarning['total'];
+}
+
+
 
 
 ?>
-
 
     
 

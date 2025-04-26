@@ -106,6 +106,27 @@ class Customer {
         return $stmt->execute([$points, $customer_id]);
         
     }
+
+    public function getAllCustomerPoints() {
+        $stmt = $this->pdo->prepare(
+            "SELECT SUM(total_points) as total_points
+            FROM customer");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getNewCustomersLastThreeDays() {
+        $stmt = $this->pdo->prepare(
+            "SELECT COUNT(*) as new_customers
+            FROM customer
+            WHERE created_at >= CURDATE() - INTERVAL 2 DAY"
+        );
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
+
+
+
 
    

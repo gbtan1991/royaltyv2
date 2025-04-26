@@ -66,28 +66,45 @@ foreach ($dailyEarnings as $dailyEarning) {
 
 ?>
 
-    
+
 
 <?php include __DIR__ . '../../partials/header.php'; ?>
 <?php include __DIR__ . '../../partials/sidebar.php'; ?>
     
-       
+
+
        
          
 <div class="main-content">
 
+    <div class="mini-card-set">
+        <?php foreach ($miniCards as $miniCard ) {
+            extract($miniCard); // Extracts the variables from the array
+            include __DIR__ . '../../partials/components/mini-card.php'; 
+        } ?>
+
+    </div>
+    
+    
+<div class="card-set">
+
+    <div class="card">
+        <h2>Daily Earnings This Month</h2>
+        <p>Daily earnings for the current month.</p>
+        <div class="chart-container">
+            <canvas id="earningsChart"></canvas>
+        </div>
+   
+
+</div>
+
+
           
             
     
-        <h3>Total Customers</h3>
-        <p><?= htmlspecialchars($customerCount) ?></p>
+      
     
-    
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-        
-        <a href="../views/customer/add_customer.php">Add Customer</a>
-        <a href="../controllers/customer/customer_view.php">View List</a>    
-    </div>
+   
     <div style="display: flex; gap: 20px">
         <div>
             <h3>Latest Customers</h3>
@@ -161,6 +178,38 @@ foreach ($dailyEarnings as $dailyEarning) {
                 </div>
     
                 </div>  
+
+               
+
+<script>
+const labels = <?php echo json_encode($days); ?>;
+const data = <?php echo json_encode($totals); ?>;
+
+const ctx = document.getElementById('earningsChart').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Daily Earnings',
+            data: data,
+            borderColor: 'hsla(294, 83%, 27%, 1)',
+            backgroundColor: 'hsla(33, 23%, 83%, 1)',
+            fill: true
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+</script>
               
 
 <?php include __DIR__ . '../../partials/footer.php'; ?>

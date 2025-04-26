@@ -59,4 +59,51 @@ class Transaction {
     }
     
 
+    public function getTodaysTotalAmount() {
+        $stmt = $this->pdo->prepare(
+            "SELECT SUM(total_amount) as total_amount
+            FROM transaction t 
+            WHERE DATE(t.transaction_date) = CURDATE()
+            ");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getWeeklyTotalAmount() {
+        $stmt = $this->pdo->prepare(
+            "SELECT 
+            SUM(t.total_amount) as total_amount
+        FROM transaction t
+        WHERE YEARWEEK(t.transaction_date, 1) = YEARWEEK(CURDATE(), 1)"
+        );
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getMonthlyTotalAmount() {
+        $stmt = $this->pdo->prepare(
+            "SELECT SUM(t.total_amount) as total_amount
+            FROM transaction t
+            WHERE MONTH(t.transaction_date) = MONTH(CURDATE())
+            AND YEAR(t.transaction_date) = YEAR(CURDATE())"
+        );
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getDailyEarningsThisMonth() {
+        $stmt = $this->pdo->prepare(
+            "SELECT 
+                DAY(t.transaction_date) as day,
+                SUM(t.total_amount) as total
+             FROM transaction t
+             WHERE MONTH(t.transaction_date) = MONTH(CURDATE())
+               AND YEAR(t.transaction_date) = YEAR(CURDATE())
+             GROUP BY DAY(t.transaction_date)
+             ORDER BY day ASC"
+        );
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

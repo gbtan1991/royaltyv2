@@ -21,6 +21,8 @@ require_once __DIR__ . '/../helpers/randomizer.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://kit.fontawesome.com/266a593bd6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>Royalty - <?= $pageTitle ? $pageTitle : "" ?></title>
 </head>
 <body>

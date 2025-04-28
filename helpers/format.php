@@ -38,3 +38,21 @@ function formatRole($role){
 function formatAdmin($admin){
     return ucfirst(htmlspecialchars(strtolower( trim($admin))));
 }
+
+
+function formatWeekRange($date = null){
+    $startOfWeek = new DateTime();
+    $startOfWeek->setISODate((int)date('Y'), (int)date('W'));
+    $startOfWeek->modify('monday this week'); // Set to Monday of this week
+
+    $endOfWeek = clone $startOfWeek;
+    $endOfWeek->modify('sunday this week'); // Set to Sunday of this week
+
+    // Return the date range in MM/DD format
+    return [
+        'startDate' => $startOfWeek->format('m/d'),  // MM/DD format
+        'endDate' => $endOfWeek->format('m/d')      // MM/DD format
+    ]; 
+
+
+}

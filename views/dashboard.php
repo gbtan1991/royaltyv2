@@ -47,7 +47,9 @@ $miniCards = [
 ];
 
 
-// CARDS
+// CALLING THE MODULES FOR THE CHARTS
+$dailyEarningsThisMonth = $transactionModel->getDailyEarningsThisMonth();
+$dailyEarningsThisWeek = $transactionModel->getDailyEarningsThisWeek();
 
 $dailyEarnings = $transactionModel->getDailyEarningsThisMonth();
 

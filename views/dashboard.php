@@ -53,7 +53,6 @@ $dailyEarningsThisWeek = $transactionModel->getDailyEarningsThisWeek();
 
 
 // Preparing data for the chart
-
 $labels = [];
 $totals = [];
 
@@ -72,6 +71,38 @@ foreach ($dailyEarningsThisWeek as $dailyEarningThisWeek) {
     $totals2[] = $dailyEarningThisWeek['total'];
 }
 
+// GETTING THE START AND END DATE FOR THE WEEK
+$dateRange = formatWeekRange();
+
+$startDate = $dateRange['startDate'];
+$endDate = $dateRange['endDate'];
+
+
+
+$charts = [
+   
+    [
+        'title' => 'Monthly Total Earnings',
+        'chartId' => 'earningsChartThisMonth',
+        'chartType' => 'line',
+        'borderColor' => 'hsla(294, 83%, 27%, 1)',
+        'backgroundColor' => 'hsla(294, 83%, 27%, 0.2)',
+        'labelText' => 'Earnings for' . date('F Y'),
+        'labels' => $labels,
+        'data' => $totals
+    ],
+
+    [
+        'title' => 'Weekly Total Earnings',
+        'chartId' => 'earningsChartThisWeek',
+        'chartType' => 'bar',
+        'borderColor' => 'hsla(294, 83%, 27%, 1)',
+        'backgroundColor' => 'hsla(294, 83%, 27%, 0.2)',
+        'labelText' => 'Earnings for week of  '  ,
+        'labels' => $labels2,
+        'data' => $totals2
+    ]
+]
 
 
 

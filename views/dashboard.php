@@ -51,16 +51,25 @@ $miniCards = [
 $dailyEarningsThisMonth = $transactionModel->getDailyEarningsThisMonth();
 $dailyEarningsThisWeek = $transactionModel->getDailyEarningsThisWeek();
 
-$dailyEarnings = $transactionModel->getDailyEarningsThisMonth();
 
 // Preparing data for the chart
 
-$days = [];
+$labels = [];
 $totals = [];
 
-foreach ($dailyEarnings as $dailyEarning) {
-    $days[] = $dailyEarning['day'];
-    $totals[] = $dailyEarning['total'];
+$labels2 = [];
+$totals2 = [];
+
+
+foreach ($dailyEarningsThisMonth as $dailyEarningThisMonth) {
+    $labels[] = $dailyEarningThisMonth['day'];
+    $totals[] = $dailyEarningThisMonth['total'];
+    // echo $dailyEarning['day'] . " " . $dailyEarning['total'] . "<br>"; -- THIS IS FOR TESTING
+}
+
+foreach ($dailyEarningsThisWeek as $dailyEarningThisWeek) {
+    $labels2[] = $dailyEarningThisWeek['day'];
+    $totals2[] = $dailyEarningThisWeek['total'];
 }
 
 

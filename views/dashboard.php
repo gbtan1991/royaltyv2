@@ -149,7 +149,6 @@ $charts = [
 
 </div>
 
-
           
             
     
@@ -233,33 +232,8 @@ $charts = [
                
 
 <script>
-const labels = <?php echo json_encode($days); ?>;
-const data = <?php echo json_encode($totals); ?>;
-
-const ctx = document.getElementById('earningsChart').getContext('2d');
-
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Daily Earnings',
-            data: data,
-            borderColor: 'hsla(294, 83%, 27%, 1)',
-            backgroundColor: 'hsla(33, 23%, 83%, 1)',
-            fill: true
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-
+const chartsData = <?= json_encode($charts) ?>;
+console.log(chartsData);
 </script>
               
 

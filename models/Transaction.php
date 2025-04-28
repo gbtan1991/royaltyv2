@@ -106,4 +106,18 @@ class Transaction {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getDailyEarningsThisWeek() {
+        $stmt = $this->pdo->prepare(
+            "SELECT 
+                DAY(t.transaction_date) as day,
+                SUM(t.total_amount) as total
+             FROM transaction t
+             WHERE YEARWEEK(t.transaction_date, 1) = YEARWEEK(CURDATE(), 1)
+             GROUP BY DAY(t.transaction_date)
+             ORDER BY day ASC"
+        );
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

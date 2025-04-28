@@ -119,24 +119,33 @@ $charts = [
          
 <div class="main-content">
 
+<div class="card-container">
+
     <div class="mini-card-set">
         <?php foreach ($miniCards as $miniCard ) {
             extract($miniCard); // Extracts the variables from the array
             include __DIR__ . '../../partials/components/mini-card.php'; 
-        } ?>
+        }
+        ?>
 
+        
     </div>
     
     
 <div class="card-set">
 
-    <div class="card">
-        <h2>Daily Earnings This Month</h2>
-        <p>Daily earnings for the current month.</p>
-        <div class="chart-container">
-            <canvas id="earningsChart"></canvas>
-        </div>
-   
+    <?php foreach ($charts as $chart) {
+        extract($chart); // Extracts the variables from the array
+        include __DIR__ . '../../partials/components/graph-card.php'; 
+    } ?>
+    
+
+    <div class="topCustomerList">
+
+
+    </div>
+
+</div>
 
 </div>
 

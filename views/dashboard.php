@@ -39,11 +39,11 @@ $customerTotalPoints = $customerModel->getAllCustomerPoints();
 
 //  Mini Card Data
 $miniCards = [
-     ['label' => "Today's Earnings", 'content' =>"P " . $todaysTransactions['total_amount'], 'logo' => 'fa-solid fa-money-bill-wave', 'iconPosition' => 'left'],
-     ['label' => 'Weekly Earnings', 'content' =>"P " . $weeklyTransactions['total_amount'], 'logo' => 'fa-solid fa-chart-simple', 'iconPosition' => 'right'],
-     ['label' => 'Points can be redeemed', 'content' => $customerTotalPoints['total_points'], 'logo' => 'fa-solid fa-coins', 'iconPosition' => 'left'],
-     ['label' => 'New Customers', 'content' => $newCustomerLastThreeDays['new_customers'], 'logo' => 'fa-solid fa-user-plus', 'iconPosition' => 'left'],
-     ['label' => 'Total Customers', 'content' => $customerCount, 'logo' => 'fa-solid fa-users', 'iconPosition' => 'left']
+     ['label' => "Today's Earnings", 'content' => $todaysTransactions['total_amount'], 'logo' => 'fa-solid fa-money-bill-wave', 'iconPosition' => 'left', 'isCurrency' => true],
+     ['label' => 'Weekly Earnings', 'content' => $weeklyTransactions['total_amount'], 'logo' => 'fa-solid fa-chart-simple', 'iconPosition' => 'right', 'isCurrency' => true],
+     ['label' => 'Points can be redeemed', 'content' => $customerTotalPoints['total_points'], 'logo' => 'fa-solid fa-coins', 'iconPosition' => 'left', 'isCurrency' => false],
+     ['label' => 'New Customers', 'content' => $newCustomerLastThreeDays['new_customers'], 'logo' => 'fa-solid fa-user-plus', 'iconPosition' => 'left', 'isCurrency' => false],
+     ['label' => 'Total Customers', 'content' => $customerCount, 'logo' => 'fa-solid fa-users', 'iconPosition' => 'left', 'isCurrency' => false]
 
 ];
 

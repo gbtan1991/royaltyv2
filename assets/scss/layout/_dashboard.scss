@@ -8,7 +8,7 @@
 .mini-card-set{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1rem;
 
     .mini-card{
@@ -45,19 +45,56 @@
 .card-set{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1rem;
+    
     
 
    .graph-card{
     background-color: $alabaster;
-    width: 50%;
-    padding: 1rem;
+    width: 600px;
+    max-height: 300px;
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 2px 2px 2px  $bone;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
     
 }
 
 }
+
+.list-card-set{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2rem;
+
+    .list-card{
+        background-color: $alabaster;
+        width: 50%;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px  $bone;
+
+        .title-ink{
+            color: $ink;
+        }
+
+        .title-purple{
+            color: $purple;
+        }
+
+        
+
+       
+    }
+
+
+}
+
 
 }

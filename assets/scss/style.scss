@@ -11,7 +11,7 @@ body{
     font-family: 'Ubuntu', sans-serif;
     background: url("../image/purple-bg.jpg") no-repeat center center fixed; 
     color: $black;
-    height: 100vh;
+    min-height: 100vh;
 
     
  
@@ -20,24 +20,16 @@ body{
    .main-content{
     display: grid;
     place-content: center;
-    height: 90vh;
+    
+    width: 80%;
     margin-left: 15%;
     padding: 3rem;
     z-index: -10;
+    
+    
    }
         
 
-
-
-
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
 
 
   

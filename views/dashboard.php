@@ -175,7 +175,6 @@ $listCards= [
     
     
 <div class="card-set">
-
     <?php foreach ($charts as $chart) {
         extract($chart); // Extracts the variables from the array
         include __DIR__ . '../../partials/components/graph-card.php'; 
@@ -188,80 +187,16 @@ $listCards= [
     </div>
 
 </div>
-
+<div class="list-card-set">
+    <?php foreach ($listCards as $index => $listCard) {
+        extract($listCard); // Extracts the variables from the array
+        include __DIR__ . '../../partials/components/list-card.php'; 
+    } ?>
 </div>
 
-          
-            
+</div>
     
-      
-    
-   
-    <div style="display: flex; gap: 20px">
-        <div>
-            <h3>Latest Customers</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Full Name</th>
-                <th>Gender</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($customers)): ?>
-                <?php foreach ($customers as $customer) : ?>
-                    <tr>
-                        <td><?= htmlspecialchars($customer['id']) ?></td>
-                        <td><?= htmlspecialchars($customer['username']) ?></td>
-                        <td><?= htmlspecialchars($customer['fullname']) ?></td>
-                        <td><?= formatGender($customer['gender']) ?></td>
-                       
-                        
-                    </tr>
-                    <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="4">No Customers Found.</td>
-                </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
-    <div>
-        
-        <h3>Top Customers</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Accumulated Time (Hours)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($topCustomers)): ?>
-                    <?php foreach ($topCustomers as $customer): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($customer['id']) ?></td>
-                            <td><?= htmlspecialchars($customer['username']) ?></td>
-                            <td><?= formatHoursFromPoints($customer['total_points']) ?></td>
-                            <!-- Assuming each 1 point = 30 mins, so total_points / 2 gives hours -->
-                        </tr>
-                        <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="3">No top customers found.</td>
-                            </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-                
-            </div>
-            
-            
+  
             
            
                     

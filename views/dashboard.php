@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/session.php';
 require_once __DIR__ . '/../models/Customer.php';
 require_once __DIR__ . '/../models/Transaction.php';
+require_once __DIR__ . '/../models/Claim.php';
 require_once __DIR__ . '/../helpers/format.php';
 require_once __DIR__ . '/../helpers/randomizer.php';
 
@@ -102,11 +103,52 @@ $charts = [
         'labels' => $labels2,
         'data' => $totals2
     ]
+    ];
+
+
+// LIST CARD MODULE
+
+// LIST CARD FUNCTION
+$customers = $customerModel->getLatestCustomers();
+$topCustomers = $customerModel->getTopCustomerPoints(3);
+
+
+//LIST CARD DATA
+$listCards= [
+    [
+        'title' => 'Top Customers',
+        'tableId' => 'topCustomersTable',
+        'headers' => ['ID', 'Username', 'Accumulated Time (Hours)'],
+        'data' => $topCustomers,
+        'columns' => ['id', 'username', 'total_points'],
+        'link' => 'customer.php'
+
+    ],
+
+    [
+        'title' => 'Latest Customers',
+        'tableId' => 'latestCustomersTable',
+        'headers' => ['ID', 'Username', 'Full Name', 'Gender', 'Date Joined'],
+        'data' => $customers,
+        'columns' => ['id', 'username','fullname', 'gender', 'created_at'],
+        'link' => 'customer.php'
+    ],
+
+    [
+        'title' => 'Latest Claims',
+        'tableId' => 'latestClaimsTable',
+        'headers' => ['ID', 'Username', 'Reward', 'Points used', 'Admin', 'Date Claimed'],
+        'data' => $claimModel->getLatestClaims(),
+        'columns' => ['id', 'customer_username', 'reward_name', 'points_used', 'admin_username', 'claim_date'],
+        'link' => 'customer.php'
+    ]
 ]
 
 
-
 ?>
+
+
+
 
 
 

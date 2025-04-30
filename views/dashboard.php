@@ -15,21 +15,25 @@ if(!isset($_SESSION['admin_id'])){
 
 
 // Page Title
-
 $pageTitle = 'Dashboard';
 $currentPage = 'dashboard';
 
-// Fetching Customers
 
+// Fetching Models
 $customerModel = new Customer($pdo);
 $transactionModel = new transaction($pdo);
+$claimModel = new Claim($pdo);
 
-$customers = $customerModel->getLatestCustomers();
-$topCustomers = $customerModel->getTopCustomerPoints(3);
+// GETTING THE START AND END DATE FOR THE WEEK
+$dateRange = formatWeekRange();
+$startDate = $dateRange['startDate'];
+$endDate = $dateRange['endDate'];
 
 
-//M Mini Cards Functions
+// MINI CARDS MODULE
 
+
+// MINI CARDS FUNCTION
 $todaysTransactions = $transactionModel->getTodaysTotalAmount(); 
 $weeklyTransactions = $transactionModel->getWeeklyTotalAmount();
 $customerCount = $customerModel->getCustomerCount();
@@ -37,7 +41,7 @@ $newCustomerLastThreeDays = $customerModel->getNewCustomersLastThreeDays();
 $customerTotalPoints = $customerModel->getAllCustomerPoints();
     
 
-//  Mini Card Data
+//MINI CARDS DATA
 $miniCards = [
      ['label' => "Today's Earnings", 'content' => $todaysTransactions['total_amount'], 'logo' => 'fa-solid fa-money-bill-wave', 'iconPosition' => 'left', 'isCurrency' => true],
      ['label' => 'Weekly Earnings', 'content' => $weeklyTransactions['total_amount'], 'logo' => 'fa-solid fa-chart-simple', 'iconPosition' => 'right', 'isCurrency' => true],
@@ -48,15 +52,15 @@ $miniCards = [
 ];
 
 
-// CALLING THE MODULES FOR THE CHARTS
+// CHARTS MODULE
+
+// CHARTS FUNCTION
 $dailyEarningsThisMonth = $transactionModel->getDailyEarningsThisMonth();
 $dailyEarningsThisWeek = $transactionModel->getDailyEarningsThisWeek();
 
-
-// Preparing data for the chart
+// CHART PREPARATION
 $labels = [];
 $totals = [];
-
 $labels2 = [];
 $totals2 = [];
 
@@ -72,16 +76,9 @@ foreach ($dailyEarningsThisWeek as $dailyEarningThisWeek) {
     $totals2[] = $dailyEarningThisWeek['total'];
 }
 
-// GETTING THE START AND END DATE FOR THE WEEK
-$dateRange = formatWeekRange();
 
-$startDate = $dateRange['startDate'];
-$endDate = $dateRange['endDate'];
-
-
-
+// CHARTS DATA
 $charts = [
-   
     [
         'title' => 'Monthly Total Earnings',
         'chartId' => 'earningsChartThisMonth',
@@ -160,9 +157,7 @@ $listCards= [
        
          
 <div class="main-content">
-
 <div class="card-container">
-
     <div class="mini-card-set">
         <?php foreach ($miniCards as $miniCard ) {
             extract($miniCard); // Extracts the variables from the array
@@ -171,9 +166,7 @@ $listCards= [
         ?>
 
         
-    </div>
-    
-    
+    </div>   
 <div class="card-set">
     <?php foreach ($charts as $chart) {
         extract($chart); // Extracts the variables from the array

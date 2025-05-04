@@ -25,8 +25,10 @@
                                         echo htmlspecialchars(formatGender($row[$column]));
                                     } elseif ($column === 'total_points') {
                                         echo htmlspecialchars(formatHoursFromPoints($row[$column]));
-                                    } elseif ($column === 'created_at') {
-                                        echo htmlspecialchars(date('M d, Y', strtotime($row[$column])));
+                                    } elseif ($column === 'created_at' || $column === 'claim_date') {
+                                        echo htmlspecialchars(formatShorterDate($row[$column] ?? ''));
+                                    } elseif ($column === 'admin_username') {
+                                        echo htmlspecialchars(formatAdmin($row[$column] ?? ''));
                                     } else {
                                         echo htmlspecialchars($row[$column]);
                                     }

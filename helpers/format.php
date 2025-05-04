@@ -16,6 +16,10 @@ function formatShortDate($dateTime) {
     return date('F j, Y', strtotime($dateTime)); 
 }
 
+function formatShorterDate($dateTime) {
+    return date('m/d/Y', strtotime($dateTime)); 
+}
+
 
 function formatHoursFromPoints($totalPoints) {
     $hours = floor($totalPoints / 2); // Each 2 points = 1 hour

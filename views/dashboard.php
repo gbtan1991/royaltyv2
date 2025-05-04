@@ -58,6 +58,8 @@ $miniCards = [
 $dailyEarningsThisMonth = $transactionModel->getDailyEarningsThisMonth();
 $dailyEarningsThisWeek = $transactionModel->getDailyEarningsThisWeek();
 
+
+
 // CHART PREPARATION
 $labels = [];
 $totals = [];
@@ -66,13 +68,13 @@ $totals2 = [];
 
 
 foreach ($dailyEarningsThisMonth as $dailyEarningThisMonth) {
-    $labels[] = $dailyEarningThisMonth['day'];
+    $labels[] = date('m/d', strtotime($dailyEarningThisMonth['DATE']));
     $totals[] = $dailyEarningThisMonth['total'];
     // echo $dailyEarning['day'] . " " . $dailyEarning['total'] . "<br>"; -- THIS IS FOR TESTING
 }
 
 foreach ($dailyEarningsThisWeek as $dailyEarningThisWeek) {
-    $labels2[] = $dailyEarningThisWeek['day'];
+    $labels2[] = date('m/d', strtotime($dailyEarningThisWeek['DATE']));
     $totals2[] = $dailyEarningThisWeek['total'];
 }
 
@@ -134,7 +136,7 @@ $listCards= [
     [
         'title' => 'Latest Claims',
         'tableId' => 'latestClaimsTable',
-        'headers' => ['ID', 'Username', 'Reward', 'Points used', 'Admin', 'Date Claimed'],
+        'headers' => ['Claim ID', 'Username', 'Reward', 'Points used', 'Admin', 'Date Claimed'],
         'data' => $claimModel->getLatestClaims(),
         'columns' => ['id', 'customer_username', 'reward_name', 'points_used', 'admin_username', 'claim_date'],
         'link' => 'customer.php'
@@ -151,6 +153,7 @@ $listCards= [
 
 <?php include __DIR__ . '../../partials/header.php'; ?>
 <?php include __DIR__ . '../../partials/sidebar.php'; ?>
+
     
 
 
@@ -203,7 +206,7 @@ $listCards= [
 
 <script>
 const chartsData = <?= json_encode($charts) ?>;
-console.log(chartsData);
+
 </script>
               
 

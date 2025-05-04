@@ -88,6 +88,27 @@
             color: $purple;
         }
 
+        table {
+            width: 100%;
+            table-layout: auto;
+
+
+            th, td{
+                 padding: 0.5rem;
+                 text-align: left;
+                 font-size: 0.8rem;
+                 white-space: nowrap;
+                 overflow: hidden;
+                 text-overflow: ellipsis;
+                 max-width: fit-content; /* Adjust as needed */
+                     
+            
+            }
+
+         
+
+
+        }
         
 
        

@@ -94,13 +94,13 @@ class Transaction {
     public function getDailyEarningsThisMonth() {
         $stmt = $this->pdo->prepare(
             "SELECT 
-                DAY(t.transaction_date) as day,
+                DATE(t.transaction_date) as DATE,
                 SUM(t.total_amount) as total
              FROM transaction t
              WHERE MONTH(t.transaction_date) = MONTH(CURDATE())
                AND YEAR(t.transaction_date) = YEAR(CURDATE())
-             GROUP BY DAY(t.transaction_date)
-             ORDER BY day ASC"
+             GROUP BY DATE(t.transaction_date)
+             ORDER BY DATE ASC"
         );
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -109,12 +109,12 @@ class Transaction {
     public function getDailyEarningsThisWeek() {
         $stmt = $this->pdo->prepare(
             "SELECT 
-                DAY(t.transaction_date) as day,
+                DATE(t.transaction_date) as DATE,
                 SUM(t.total_amount) as total
              FROM transaction t
              WHERE YEARWEEK(t.transaction_date, 1) = YEARWEEK(CURDATE(), 1)
-             GROUP BY DAY(t.transaction_date)
-             ORDER BY day ASC"
+             GROUP BY DATE(t.transaction_date)
+             ORDER BY DATE ASC"
         );
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

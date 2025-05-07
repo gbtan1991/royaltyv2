@@ -153,7 +153,7 @@ $listCards= [
         'columns' => ['id', 'customer_username', 'reward_name', 'points_used', 'admin_username', 'claim_date'],
         'link' => 'customer.php'
     ]
-]
+    ];
 
 
 ?>
@@ -172,7 +172,17 @@ $listCards= [
        
          
 <div class="main-content">
+<div class="button-container">
+        <?php foreach ($buttonsDashboard as $buttonDashboard) {
+            extract($buttonDashboard); // Extracts the variables from the array
+            include __DIR__ . '../../partials/components/button-dashboard.php';
+        }
+        ?>
+    </div>
+
+
 <div class="card-container">
+  
     <div class="mini-card-set">
         <?php foreach ($miniCards as $miniCard ) {
             extract($miniCard); // Extracts the variables from the array

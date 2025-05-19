@@ -1,14 +1,11 @@
 <?php 
+require_once '../config/session.php';
 
-require_once '../config/database.php';
-
-//Check if the admin is logged in
-if(!isset($_SESSION['admin'])){
+// Check login first
+if (!isset($_SESSION['admin'])) {
     header('Location: login.php');
-    exit();
-} else {
-    header('Location: ../views/dashboard.php');
     exit();
 }
 
-?>
+// Load the router
+require_once '../router/router.php';

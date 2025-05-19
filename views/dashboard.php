@@ -163,8 +163,8 @@ $listCards= [
 
 
 
-<?php include __DIR__ . '../../partials/header.php'; ?>
-<?php include __DIR__ . '../../partials/sidebar.php'; ?>
+<?php //include __DIR__ . '../../partials/header.php'; ?>
+<?php //include __DIR__ . '../../partials/sidebar.php'; ?>
 
     
 
@@ -232,4 +232,4 @@ const chartsData = <?= json_encode($charts) ?>;
 </script>
               
 
-<?php include __DIR__ . '../../partials/footer.php'; ?>
+<?php //include __DIR__ . '../../partials/footer.php'; ?>

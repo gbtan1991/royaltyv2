@@ -1,51 +1,41 @@
+<?php
+require_once __DIR__ . '/../config/config.php';
+// Base URL path to the public folder where index.php is located
+$basePublicUrl = BASE_URL . 'public/';
 
+// Define nav items with page keys instead of direct file paths
+$navItems = [
+    ['page' => 'dashboard', 'label' => 'Dashboard', 'logo' => 'fa-solid fa-chart-simple'],
+    ['page' => 'customer_view', 'label' => 'Manage Customers', 'logo' => 'fa-solid fa-users'],
+    ['page' => 'transaction_view', 'label' => 'Manage Transactions', 'logo' => 'fa-solid fa-handshake-simple'],
+    ['page' => 'claim_view', 'label' => 'View Claims', 'logo' => 'fa-solid fa-certificate'],
+    ['page' => 'reward_view', 'label' => 'Manage Rewards', 'logo' => 'fa-solid fa-gift'],
+    ['page' => 'logout', 'label' => 'Logout', 'logo' => 'fa-solid fa-right-from-bracket'],
+];
 
-
-
+if ($_SESSION['role'] == 'superadmin') {
+    $insertIndex = count($navItems) - 1;
+    $manageAdmin = ['page' => 'admin_view', 'label' => 'Manage Admin Accounts', 'logo' => 'fa-solid fa-user-tie'];
+    array_splice($navItems, $insertIndex, 0, [$manageAdmin]);
+}
+?>
 
 <aside class="sidebar">
     <div class="sidebar-header">
-        <img src="../assets/image/royalty-logo.png" alt="Royalty logo" class="sidebar-logo">
+        <img src="<?= BASE_URL ?>assets/image/royalty-logo.png" alt="Royalty logo" class="sidebar-logo">
         <h1>Royalty</h1>
         <p>Rewards Application</p>
     </div>
 
     <nav class="sidebar-nav">
-      
-        <?php 
-
-        $navItems = [
-            ['href' => '/royaltyv2/views/dashboard.php', 'label' => 'Dashboard', 'logo' => 'fa-solid fa-chart-simple'],
-            ['href' => '../controllers/customer/customer_view.php', 'label' => 'Manage Customers', 'logo' => 'fa-solid fa-users'],
-            ['href' => '../controllers/transaction/transaction_view.php', 'label' => 'Manage Transactions', 'logo' => 'fa-solid fa-handshake-simple'],
-            ['href' => '../controllers/claim/claim_view.php', 'label' => 'View Claims', 'logo' => 'fa-solid fa-certificate'],
-            ['href' => '../controllers/reward/reward_view.php', 'label' => 'Manage Rewards', 'logo' => 'fa-solid fa-gift'],
-            ['href' => '../public/logout.php', 'label' => 'Logout', 'logo' => 'fa-solid fa-right-from-bracket']
-            
-        ];
-
-        if ($_SESSION['role'] == 'superadmin') {
-            $insertIndex = count($navItems) - 1; // Insert before the last item (Logout)
-            $manageAdmin = ['href' => '../controllers/admin/admin_view.php', 'label' => 'Manage Admin Accounts', 'logo' => 'fa-solid fa-user-tie'];
-            array_splice($navItems, $insertIndex, 0, [$manageAdmin]);
-          
-        }
-
-        
-
-
-        foreach ($navItems as $navItem){
-            $href = $navItem['href'];
+        <?php
+        foreach ($navItems as $navItem) {
+            // Create href using index.php?page=...
+            $href = $basePublicUrl . 'index.php?page=' . $navItem['page'];
             $label = $navItem['label'];
-            $logo = $navItem['logo'] ?? null; // Use null if 'logo' is not set
+            $logo = $navItem['logo'] ?? '';
             include __DIR__ . '/components/nav-button.php';
-
         }
-
         ?>
-
-
-
-
     </nav>
 </aside>

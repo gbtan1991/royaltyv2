@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $admin['role'];
 
             // Redirect to dashboard
-            header("Location: ../views/dashboard.php");
+            header("Location: ../public/index.php?page=dashboard");
             exit;
         } else {
             header("Location: ../public/login.php?error=Invalid credentials");

@@ -9,7 +9,7 @@ require_once __DIR__ . '/../helpers/format.php';
 require_once __DIR__ . '/../helpers/randomizer.php';
 
 
-
+$pageTitle = isset($_GET['page']) ? ucfirst($_GET['page']) : "Dashboard";
 
 ?>
 

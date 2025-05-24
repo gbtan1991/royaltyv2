@@ -13,6 +13,8 @@ if(!isset($_SESSION['admin_id'])){
     exit();
 }
 
+$basePublicUrl = BASE_URL . 'public/';
+
 
 // Page Title
 $pageTitle = 'Dashboard';

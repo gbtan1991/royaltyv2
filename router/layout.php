@@ -3,6 +3,10 @@
 
 function render_layout($content){
 
+    require_once __DIR__ . '../../config/config.php';
+
+    $baseUrl = BASE_URL ?? "";
+
 
 
   ob_start();
@@ -16,6 +20,10 @@ function render_layout($content){
   ob_start();
   include __DIR__ . '../../partials/footer.php';
   $footer = ob_get_clean();
+
+  ob_start();
+  include __DIR__ . '../../partials/components/button-dashboard.php';
+  $buttonsDashboard = ob_get_clean();
 
   
     echo <<<HTML
@@ -31,10 +39,16 @@ function render_layout($content){
     <div class="container">
         $sidebar
         <main>
-            $content
+            <div class="button-container">    
+        $buttonsDashboard
+            </div>    
+        $content
         </main>
     </div>
     $footer
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{$baseUrl}assets/js/dashboard.js"></script>
+   
 </body>
 </html>
 HTML;

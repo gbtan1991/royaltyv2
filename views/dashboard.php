@@ -13,8 +13,6 @@ if(!isset($_SESSION['admin_id'])){
     exit();
 }
 
-$basePublicUrl = BASE_URL . 'public/';
-
 
 // Page Title
 $pageTitle = 'Dashboard';
@@ -32,14 +30,6 @@ $startDate = $dateRange['startDate'];
 $endDate = $dateRange['endDate'];
 
 
-// BUTTON DASHBOARD MODULE
-$buttonsDashboard = [
-    ['logo' => 'fa-solid fa-user-plus', 'title' => 'Register New Customer', 'link' => '../views/customer/add_customer.php'],
-    ['logo' => 'fa-solid fa-square-plus', 'title' => 'Add New Transaction', 'link' => '../views/transaction/add_transaction.php'],
-    ['logo' => 'fa-solid fa-certificate', 'title' => 'Customer Claim Rewards', 'link' => '../views/reward/add_reward.php'],
-    ['logo' => 'fa-solid fa-gift', 'title' => 'Add New Reward', 'link' => '../views/claim/add_claim.php']
-    
-];
 
 
 // MINI CARDS MODULE

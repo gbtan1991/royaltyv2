@@ -25,3 +25,4 @@ const dropdown = document.getElementById('settingsDropdown');
             dropdown.style.display = 'none';
         }
     })
+

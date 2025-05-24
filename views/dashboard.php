@@ -7,11 +7,14 @@ require_once __DIR__ . '/../models/Transaction.php';
 require_once __DIR__ . '/../models/Claim.php';
 require_once __DIR__ . '/../helpers/format.php';
 require_once __DIR__ . '/../helpers/randomizer.php';
+require_once __DIR__ . '/../config/config.php';
 
 if(!isset($_SESSION['admin_id'])){
     header('Location: ../public/login.php');
     exit();
 }
+
+$basePublicUrl = BASE_URL . 'public/';
 
 
 // Page Title
@@ -164,13 +167,7 @@ $listCards= [
        
          
 <div class="main-content">
-<div class="button-container">
-        <?php foreach ($buttonsDashboard as $buttonDashboard) {
-            extract($buttonDashboard); // Extracts the variables from the array
-            include __DIR__ . '../../partials/components/button-dashboard.php';
-        }
-        ?>
-    </div>
+
 
 
 <div class="card-container">

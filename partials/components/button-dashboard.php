@@ -22,7 +22,7 @@ $dashboardButtons = [
         <a href="<?= $href ?>" class="dashboard-button-link">
             
                 <i class="<?= $logo ?>"></i> <?= $label ?>
-            </button>
+        
         </a>
     <?php endforeach; ?>
 </div>

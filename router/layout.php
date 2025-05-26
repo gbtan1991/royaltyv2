@@ -36,14 +36,16 @@ function render_layout($content){
 </head>
 <body>
     $header
-    <div class="container">
+    <div>
         $sidebar
-        <main>
-            <div class="button-container">    
+
+        
+        <div class="main-content">
+            
         $buttonsDashboard
-            </div>    
+                
         $content
-        </main>
+        </div>
     </div>
     $footer
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

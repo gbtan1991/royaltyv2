@@ -166,7 +166,7 @@ $listCards= [
 
        
          
-<div class="main-content">
+
 
 
 
@@ -211,7 +211,7 @@ $listCards= [
 
                 </div>
     
-                </div>  
+</div>  
 
                
 

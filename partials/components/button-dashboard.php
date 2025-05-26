@@ -20,7 +20,7 @@ $dashboardButtons = [
             $logo = $btn['logo'] ?? '';
         ?>
         <a href="<?= $href ?>" class="dashboard-button-link">
-            <button class="dashboard-button">
+            
                 <i class="<?= $logo ?>"></i> <?= $label ?>
             </button>
         </a>

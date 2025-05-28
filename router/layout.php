@@ -1,7 +1,7 @@
 <?php 
 
 
-function render_layout($content){
+function render_layout($content, $currentPage = '', $category = '') {
 
     require_once __DIR__ . '../../config/config.php';
 
@@ -21,9 +21,17 @@ function render_layout($content){
   include __DIR__ . '../../partials/footer.php';
   $footer = ob_get_clean();
 
-  ob_start();
-  include __DIR__ . '../../partials/components/button-dashboard.php';
-  $buttonsDashboard = ob_get_clean();
+   ob_start();
+    $buttonComponentPath = __DIR__ . "../../partials/components/buttons/{$category}/{$currentPage}.php";
+    if (file_exists($buttonComponentPath)) {
+        include $buttonComponentPath;
+    } else {
+        //include __DIR__ . '/components/buttons/default.php';
+        echo '<div class="button-component-placeholder">No buttons available for this page.</div>';
+        echo $currentPage;
+        echo $buttonComponentPath;
+    }
+    $buttonsDashboard = ob_get_clean();
 
   
     echo <<<HTML

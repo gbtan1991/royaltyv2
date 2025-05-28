@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../config/database.php';
     <?php endif; ?>
 
 
-<form action="../../controllers/customer/add_customer.php" method="post">
+<form action="index.php?page=save_customer" method="post">
     <label for="username">Username:</label>
     <input type="text" name="username" id="username" required><br><br>
 
@@ -42,7 +42,7 @@ require_once __DIR__ . '/../../config/database.php';
     <input type="date" name="birthdate" id="birthdate" required><br><br>
 
     <button type="submit">Add</button>
-    <a href="../../controllers/customer/customer_view.php">Cancel</a>
+    <a href="index.php?page=customer_view">Cancel</a>
 </form>
 </body>
 </html>

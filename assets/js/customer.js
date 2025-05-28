@@ -38,3 +38,39 @@ const CustomerModule = {
 document.addEventListener("DOMContentLoaded", function () {
     CustomerModule.init();
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const rowsPerPage = 10;
+    const tableBody = document.getElementById("customer-table-body");
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+    const pagination = document.getElementById("pagination-controls");
+
+    function renderPage(page) {
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        rows.forEach((row, index) => {
+            row.style.display = index >= start && index < end ? "" : "none";
+        });
+
+        renderPaginationControls(page);
+    }
+
+    function renderPaginationControls(currentPage) {
+        const totalPages = Math.ceil(rows.length / rowsPerPage);
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.classList.add("pagination-btn");
+            if (i === currentPage) btn.style.fontWeight = "bold";
+            btn.addEventListener("click", () => renderPage(i));
+            pagination.appendChild(btn);
+        }
+    }
+
+    renderPage(1);
+});

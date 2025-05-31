@@ -29,8 +29,11 @@ foreach ($customers as $customer): ?>
         <td><?= formatShortDate($customer['birthdate']) ?></td>
         <td><?= htmlspecialchars($customer['total_points']) ?></td>
         <td><?= formatShortDate($customer['created_at']) ?></td>
-        <td><a href="../../controllers/customer/customer_edit.php?id=<?= $customer['id'] ?>">Edit</a>
-                        </td>
-                        <td><a href="../../controllers/customer/delete_customer.php?id=<?= $customer['id'] ?>" onclick="return confirm('Are you sure you want to delete this cuustomer?')">Delete</a></td>
-    </tr>
-<?php endforeach; ?>
+        <td>
+        <a href="">Profile</a><i class="fa-solid fa-user"></i>
+        <a href="index.php?page=customer_edit&id=<?= $customer['id'] ?>"><i class="fa-solid fa-wrench"></i></a>
+        <a href="index.php?page=delete_customer&id=<?= $customer['id'] ?>" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></a>
+        </td>
+     </tr>
+
+        <?php endforeach; ?>

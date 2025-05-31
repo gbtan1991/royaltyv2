@@ -8,17 +8,17 @@ if (isset($_GET['id'])) {
     $customerModel = new Customer($pdo);
 
     if ($customerModel->deleteCustomer($id)) {
-        header('Location: customer_view.php?success=Customer Deleted Successfully');
+        header('Location: index.php?page=customer_view&success=Customer Deleted Successfully');
         exit;
     
     } else {
-        header('Location: customer_view.php?error=Failed to Delete Customer');
+        header('Location: index.php?page=customer_view&error=Failed to Delete Customer');
         exit;
     }       
 
 } else {
     // Handle the case when the id is not set
-    header('Location: customer_view.php?error=Invalid Request');
+    header('Location: index.php?page=customer_view&error=Invalid Request');
     exit;
 }
 

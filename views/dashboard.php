@@ -156,20 +156,6 @@ $listCards= [
 
 
 
-
-
-<?php //include __DIR__ . '../../partials/header.php'; ?>
-<?php //include __DIR__ . '../../partials/sidebar.php'; ?>
-
-    
-
-
-       
-         
-
-
-
-
 <div class="card-container">
   
     <div class="mini-card-set">
@@ -220,5 +206,3 @@ const chartsData = <?= json_encode($charts) ?>;
 
 </script>
               
-
-<?php //include __DIR__ . '../../partials/footer.php'; ?>

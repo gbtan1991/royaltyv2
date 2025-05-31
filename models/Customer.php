@@ -9,17 +9,13 @@ class Customer {
         $this->pdo = $pdo;
     }
 
-    public function getCustomerByUsername($username){
-        $stmt = $this->pdo->prepare("SELECT * FROM customer WHERE username = ?");
-        $stmt->execute([$username]);
-        $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+ public function getCustomerByUsername($username){
+    $stmt = $this->pdo->prepare("SELECT * FROM customer WHERE username = ?");
+    $stmt->execute([$username]);
+    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$customer) {
-            throw new Exception("Customer not found.");
-
-        }
-        return $customer;
-    }
+    return $customer ?: null; // Return null instead of throwing
+}
 
     public function getAllCustomers() {
         $stmt = $this->pdo->prepare("SELECT * FROM customer ORDER BY id DESC");

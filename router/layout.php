@@ -31,8 +31,7 @@ function render_layout($content, $currentPage = '', $category = '') {
     }
     $buttonsDashboard = ob_get_clean();
 
-  
-    echo <<<HTML
+  echo <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,28 +39,23 @@ function render_layout($content, $currentPage = '', $category = '') {
     <title>Royalty Rewards App</title>
     <link rel="icon" type="image/x-icon" href="{$baseUrl}assets/image/royalty-logo.ico" />
     <link rel="stylesheet" href="{$baseUrl}assets/css/style.css" />
-
 </head>
 <body>
     $header
     <div>
         $sidebar
-
-        
         <div class="main-content">
-            
-        $buttonsDashboard
-                
-        $content
+            $buttonsDashboard
+            $content
         </div>
     </div>
     $footer
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{$baseUrl}assets/js/dashboard.js"></script>
     <script src="{$baseUrl}assets/js/customer.js"></script>
-   
 </body>
 </html>
 HTML;
 
 }
+

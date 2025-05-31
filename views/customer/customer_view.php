@@ -7,6 +7,7 @@ $customerModel = new Customer($pdo);
 $customers = $customerModel->getAllCustomers(); // You’ll define this next
 ?>
 
+<div class="customer-view-layout">
 <h2>List of Customers</h2>
 
 <?php if(isset($_GET['success'])): ?>
@@ -53,4 +54,13 @@ $customers = $customerModel->getAllCustomers(); // You’ll define this next
 
 <div id="pagination-controls"></div>
 
-<script src="../../../assets/js/customer.js"></script>
+
+</div>
+
+
+
+
+<script src="../../../assets/js/customer.js">
+    console.log('Customer JS loaded');
+
+</script>

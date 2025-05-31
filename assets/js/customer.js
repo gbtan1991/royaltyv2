@@ -6,71 +6,74 @@ const CustomerModule = {
     bindEvents: function () {
         let searchInput = document.getElementById("search-customer");
         if (searchInput) {
-            searchInput.addEventListener("keyup", (event) => {
+            searchInput.addEventListener("keyup", () => {
                 this.searchCustomers();
+            });
+            // Also bind frontend filter on input to cover instant filtering
+            searchInput.addEventListener("input", () => {
+                this.filterTable();
             });
         }
     },
 
     searchCustomers: function () {
-        let query = document.getElementById("search-customer").value;
+        let query = document.getElementById("search-customer").value.trim();
+
+        if (query.length === 0) {
+            // If empty search, reload full table via AJAX or optionally do nothing
+            this.loadAllCustomers();
+            return;
+        }
 
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "../../controllers/customer/search_customer.php?search=" + encodeURIComponent(query), true);
+        xhr.open("GET", "controllers/customer/search_customer.php?search=" + encodeURIComponent(query), true);
 
-        xhr.onload = function () {
-            if (this.status == 200) {
-                document.getElementById("customer-table-body").innerHTML = this.responseText;
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                const customerTableBody = document.getElementById("customer-table-body");
+                customerTableBody.innerHTML = xhr.responseText;
             } else {
                 console.error("AJAX Error. Status:", xhr.status);
             }
         };
 
-        xhr.onerror = function () {
+        xhr.onerror = () => {
             console.error("Network Error!");
         };
 
         xhr.send();
     },
+
+    loadAllCustomers: function () {
+        // Optional: You can implement AJAX call to reload full customer list
+        // or simply do nothing to keep current rows.
+        // For example:
+        // let xhr = new XMLHttpRequest();
+        // xhr.open("GET", "controllers/customer/customer_list.php", true);
+        // xhr.onload = () => { ... }
+        // xhr.send();
+
+        // For now, just show all rows if AJAX is not used:
+        this.filterTable(""); // Show all rows
+    },
+
+    filterTable: function () {
+        const searchInput = document.getElementById("search-customer");
+        if (!searchInput) return;
+
+        const query = searchInput.value.toLowerCase();
+        const tableBody = document.getElementById("customer-table-body");
+        if (!tableBody) return;
+
+        const rows = Array.from(tableBody.querySelectorAll("tr"));
+        rows.forEach(row => {
+            const rowText = row.innerText.toLowerCase();
+            row.style.display = rowText.includes(query) ? "" : "none";
+        });
+    }
 };
 
-// Ensure the script runs only after the page loads
-document.addEventListener("DOMContentLoaded", function () {
+// Initialize after DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
     CustomerModule.init();
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const rowsPerPage = 10;
-    const tableBody = document.getElementById("customer-table-body");
-    const rows = Array.from(tableBody.querySelectorAll("tr"));
-    const pagination = document.getElementById("pagination-controls");
-
-    function renderPage(page) {
-        const start = (page - 1) * rowsPerPage;
-        const end = start + rowsPerPage;
-
-        rows.forEach((row, index) => {
-            row.style.display = index >= start && index < end ? "" : "none";
-        });
-
-        renderPaginationControls(page);
-    }
-
-    function renderPaginationControls(currentPage) {
-        const totalPages = Math.ceil(rows.length / rowsPerPage);
-        pagination.innerHTML = "";
-
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.textContent = i;
-            btn.classList.add("pagination-btn");
-            if (i === currentPage) btn.style.fontWeight = "bold";
-            btn.addEventListener("click", () => renderPage(i));
-            pagination.appendChild(btn);
-        }
-    }
-
-    renderPage(1);
 });

@@ -18,7 +18,7 @@ $customers = $customerModel->getAllCustomers(); // You’ll define this next
 
 <input type="text" id="search-customer" placeholder="Search Customer">
 
-<table id="customer-table">
+<table>
     <thead>
         <tr>
             <th>ID</th>

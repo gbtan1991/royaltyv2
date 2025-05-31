@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../config/session.php';
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 
-    <form action="../../controllers/customer/edit_customer.php" method="post">
+    <form action="index.php?page=update_customer" method="post">
         <input type="hidden" name="id" value="<?= htmlspecialchars($customer['id']) ?>">
 
         <label for="username">Username:</label>

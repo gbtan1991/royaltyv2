@@ -41,8 +41,11 @@ $customers = $customerModel->getAllCustomers(); // You’ll define this next
                 <td><?= formatShortDate($customer['birthdate']) ?></td>
                 <td><?= formatHoursFromPoints($customer['total_points']) ?></td>
                 <td><?= formatShortDate($customer['created_at']) ?></td>
-                <td><a href="index.php?page=customer_edit&id=<?= $customer['id'] ?>">Edit</a></td>
-                <td><a href="index.php?page=delete_customer&id=<?= $customer['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a></td>
+                <td class="table-actions">
+                <a href=""><i class="fa-solid fa-user"></i></a></i>
+                <a href="index.php?page=customer_edit&id=<?= $customer['id'] ?>"><i class="fa-solid fa-wrench"></i></a>
+                <a href="index.php?page=delete_customer&id=<?= $customer['id'] ?>" class="delete-button" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

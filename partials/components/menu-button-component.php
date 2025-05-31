@@ -16,7 +16,10 @@ $basePublicUrl = BASE_URL . 'public/';
         ?>
         <a href="<?= $href ?>" >
             
-                <i class="<?= $logo ?>"></i> <?= $label ?>
+                <i class="<?= $logo ?>"></i>
+                <p>
+                <?= $label ?>
+                </p> 
         
         </a>
     <?php endforeach; ?>

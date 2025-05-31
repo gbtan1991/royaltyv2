@@ -27,9 +27,7 @@ function render_layout($content, $currentPage = '', $category = '') {
         include $buttonComponentPath;
     } else {
         //include __DIR__ . '/components/buttons/default.php';
-        echo '<div class="button-component-placeholder">No buttons available for this page.</div>';
-        echo $currentPage;
-        echo $buttonComponentPath;
+        
     }
     $buttonsDashboard = ob_get_clean();
 

@@ -9,6 +9,9 @@ $routes = [
     'save_customer' => __DIR__ . '/../controllers/customer/add_customer.php',
 
     'transaction_view' => __DIR__ . '/../controllers/transaction/transaction_view.php',
+    'add_transaction' => __DIR__ . '/../views/transaction/add_transaction.php',
+
+    
     'claim_view' => __DIR__ . '/../controllers/claim/claim_view.php',
     'reward_view' => __DIR__ . '/../controllers/reward/reward_view.php',
     'admin_view' => __DIR__ . '/../controllers/admin/admin_view.php',

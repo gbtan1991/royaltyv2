@@ -7,6 +7,9 @@ $routes = [
     'customer_view' => __DIR__ . '/../controllers/customer/customer_view.php',
     'add_customer' => __DIR__ . '/../views/customer/add_customer.php',
     'save_customer' => __DIR__ . '/../controllers/customer/add_customer.php',
+    'customer_edit' => __DIR__ . '/../controllers/customer/customer_edit.php',
+    'update_customer' => __DIR__ . '/../controllers/customer/update_customer.php',
+    'delete_customer' => __DIR__ . '/../controllers/customer/delete_customer.php',
 
     'transaction_view' => __DIR__ . '/../controllers/transaction/transaction_view.php',
     'add_transaction' => __DIR__ . '/../views/transaction/add_transaction.php',

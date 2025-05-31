@@ -37,8 +37,10 @@ function render_layout($content, $currentPage = '', $category = '') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Royalty Rewards App</title>
+     <link rel="icon" type="image/x-icon" href="../assets/image/royalty-logo.ico">
     <link rel="stylesheet" href="../assets/css/style.css">
+    
 </head>
 <body>
     $header
@@ -56,6 +58,7 @@ function render_layout($content, $currentPage = '', $category = '') {
     $footer
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{$baseUrl}assets/js/dashboard.js"></script>
+    <script src="{$baseUrl}assets/js/customer.js"></script>
    
 </body>
 </html>

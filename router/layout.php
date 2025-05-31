@@ -38,9 +38,9 @@ function render_layout($content, $currentPage = '', $category = '') {
 <head>
     <meta charset="UTF-8">
     <title>Royalty Rewards App</title>
-    <link rel="icon" type="image/x-icon" href="../assets/image/royalty-logo.ico">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    
+    <link rel="icon" type="image/x-icon" href="{$baseUrl}assets/image/royalty-logo.ico" />
+    <link rel="stylesheet" href="{$baseUrl}assets/css/style.css" />
+
 </head>
 <body>
     $header

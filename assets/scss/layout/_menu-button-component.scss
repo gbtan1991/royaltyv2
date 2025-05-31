@@ -1,8 +1,14 @@
 .button-menu{
     display: flex;
+    flex-direction: row;
     gap: 1rem;
 
     a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+
         text-decoration: none;
         color: $purple;
         background-color: $alabaster;

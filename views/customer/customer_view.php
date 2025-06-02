@@ -27,7 +27,7 @@ $customers = $customerModel->getAllCustomers(); // You’ll define this next
             <th>Full Name</th>
             <th>Gender</th>
             <th>Birth Date</th>
-            <th>Accumulated Time</th>
+            <th>Accumulated points</th>
             <th>Registered Date</th>
             <th colspan="2">Actions</th>
         </tr>
@@ -40,7 +40,7 @@ $customers = $customerModel->getAllCustomers(); // You’ll define this next
                 <td><?= htmlspecialchars($customer['fullname']) ?></td>
                 <td><?= formatGender($customer['gender']) ?></td>
                 <td><?= formatShortDate($customer['birthdate']) ?></td>
-                <td><?= formatHoursFromPoints($customer['total_points']) ?></td>
+                <td><?= ($customer['total_points']) ?></td>
                 <td><?= formatShortDate($customer['created_at']) ?></td>
                 <td class="table-actions">
                 <a href=""><i class="fa-solid fa-user"></i></a></i>
@@ -52,12 +52,14 @@ $customers = $customerModel->getAllCustomers(); // You’ll define this next
     </tbody>
 </table>
 
-<div id="pagination-controls"></div>
 
 
 </div>
 
 
+<div id="pagination-controls">
+    <button id="prev-page" class="pagination"
+</div>
 
 
 <script src="../../../assets/js/customer.js">

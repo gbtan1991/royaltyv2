@@ -32,7 +32,7 @@ $customers = $customerModel->getAllCustomers();
         <p style="color: green;"><?= htmlspecialchars($_GET['success']) ?></p>
     <?php endif; ?>
 
-    <form action="../../controllers/transaction/add_transaction.php" method="POST">
+    <form action="index.php?page=save_transaction" method="POST">
         <label for="customer_id">Select Customer:</label>
         <select name="customer_id" required>
             <option value="">-- Select Customer --</option>

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validate input
     if (empty($customer_id) || empty($total_amount)) {
-        header("Location: ../../views/transaction/add_transaction.php?error=Missing required fields");
+        header("Location: index.php?page=add_transaction&error=Missing required fields");
         exit;
     }
 
@@ -32,14 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pointsEarned = floor($total_amount / 5); // 5 pesos = 30 mins = 1 point
         $customerModel->updateCustomerPoints($customer_id, $pointsEarned);
 
-        header("Location: ../../controllers/transaction/transaction_view.php?success=Transaction added successfully");
+        header("Location: index.php?page=transaction_view&success=Transaction added successfully");
         exit;
     } else {
-        header("Location: ../../controllers/transaction/add_transaction.php?error=Failed to add transaction");
+        header("Location: index.php?page=transaction_view&error=Failed to add transaction");
         exit;
     }
 } else {
-    header("Location: ../../views/transaction/add_transaction.php");
+    header("Location: index.php?page=add_transaction");
     exit;
 }
 ?>

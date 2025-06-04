@@ -1,10 +1,5 @@
 <?php
-require_once __DIR__ . '/../../models/Customer.php';
-require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../helpers/format.php';
-
-$customerModel = new Customer($pdo);
-$customers = $customerModel->getAllCustomers(); // You’ll define this next
 ?>
 
 <div class="customer-view-layout">

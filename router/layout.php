@@ -53,6 +53,7 @@ function render_layout($content, $currentPage = '', $category = '') {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{$baseUrl}assets/js/dashboard.js"></script>
     <script src="{$baseUrl}assets/js/customer.js"></script>
+    <script src="{$baseUrl}assets/js/transaction.js"></script>
 </body>
 </html>
 HTML;

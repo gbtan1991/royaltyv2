@@ -56,5 +56,11 @@ class Claim {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+
+    public function getClaimById($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM claim WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
 }

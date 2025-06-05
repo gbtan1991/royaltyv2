@@ -17,6 +17,12 @@ $routes = [
     'delete_transaction' => __DIR__ . '/../controllers/transaction/delete_transaction.php',
     
     'claim_view' => __DIR__ . '/../controllers/claim/claim_view.php',
+    'add_claim' => __DIR__ . '/../views/claim/add_claim.php',
+    'save_claim' => __DIR__ . '/../controllers/claim/save_claim.php',
+    'claim_edit' => __DIR__ . '/../controllers/claim/claim_edit.php',
+    'update_claim' => __DIR__ . '/../controllers/claim/update_claim.php',
+    'delete_claim' => __DIR__ . '/../controllers/claim/delete_claim.php',
+
     'reward_view' => __DIR__ . '/../controllers/reward/reward_view.php',
     'admin_view' => __DIR__ . '/../controllers/admin/admin_view.php',
     'logout' => __DIR__ . '/../public/logout.php',

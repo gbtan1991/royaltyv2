@@ -15,15 +15,10 @@ $customers = $customerModel->getAllCustomers();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Transaction</title>
-</head>
-<body>
-    <h2>Add Transaction</h2>
+<div class="add-transaction-page">
+
+
+    <h2>Add New Transaction</h2>
 
     <?php if (isset($_GET['error'])): ?>
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
@@ -33,8 +28,11 @@ $customers = $customerModel->getAllCustomers();
     <?php endif; ?>
 
     <form action="index.php?page=save_transaction" method="POST">
+ 
+    <div class="label-fields">
         <label for="customer_id">Select Customer:</label>
         <select name="customer_id" required>
+
             <option value="">-- Select Customer --</option>
             <?php foreach ($customers as $customer): ?>
                 <option value="<?= $customer['id'] ?>">
@@ -42,16 +40,22 @@ $customers = $customerModel->getAllCustomers();
                 </option>
             <?php endforeach; ?>
         </select>
-        <br><br>
-
+        
+    </div>
+    <div class="label-fields">
+        
         <label for="total_amount">Amount Paid (PHP):</label>
         <input type="number" name="total_amount" step="0.01" required>
-        <br><br>
+        
+    </div>
 
-        <button type="submit">Add Transaction</button>
+    <div class="button-fields">
+        <button type="submit"><i class="fa-solid fa-check"></i>Confirm Transaction</button>
+        <a href="../../controllers/transaction/transaction_view.php"><i class="fa-solid fa-ban"></i>Cancel</a>
+
+    </div>
     </form>
 
-    <br>
-    <a href="../../controllers/transaction/transaction_view.php">View Transactions</a>
-</body>
-</html>
+
+
+</div>

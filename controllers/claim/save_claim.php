@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../models/Reward.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../../views/claim/add_claim.php?error=Invalid Request Method');
+    header('Location: index.php?page=claim_view&error=Invalid Request Method');
     exit();
 
 }
@@ -22,7 +22,7 @@ $admin_id = $_SESSION['admin_id'] ?? null;
 
 
 if (!$reward_id || !$customer_id || !$remarks || !$admin_id) {
-    header('Location: ../../views/claim/add_claim.php?error=Mising required data');
+    header('Location: index.php?page=claim_view&error=Mising required data');
 }
 
 // Instance models
@@ -38,13 +38,13 @@ $reward = $rewardModel->getRewardById($reward_id);
 $customer = $customerModel->getCustomerById($customer_id);
 
 if (!$reward || !$customer) {
-    header('Location: ../../views/claim/add_claim.php?error=Invalid Reward or Customer ID');
+    header('Location: index.php?page=claim_view&error=Invalid Reward or Customer ID');
     exit;
 }
 
 //  Check if customer has enough points
 if ($customer['total_points'] < $reward['required_points']) {
-    header('Location: ../../views/claim/add_claim.php?error=Not enought points to claim this reward');
+    header('Location: index.php?page=claim_view&error=Not enought points to claim this reward');
     exit;
 }
 
@@ -61,16 +61,16 @@ try {
 
     if ($claimSuccess && $updatePoints) {
         $pdo->commit();
-        header('Location: ../../views/claim/add_claim.php?success=Claim added successfully');
+        header('Location: index.php?page=claim_view&success=Claim added successfully');
     } else {
         $pdo->rollBack();
-        header('Location: ../../views/claim/add_claim.php?error=Failed to add claim');
+        header('Location: index.php?page=claim_view&error=Failed to add claim');
     }
 
     exit;
 } catch (Exception $e) {
     $pdo->rollback();
-    header('Location: ../../views/claim/add_claim.php?error=An error occurred: ' . $e->getMessage());
+    header('Location: index.php?page=claim_view&error=An error occurred: ' . $e->getMessage());
     exit;
 }
 

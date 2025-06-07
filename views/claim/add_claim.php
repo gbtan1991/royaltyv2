@@ -32,7 +32,7 @@ $customers = $customerModel->getAllCustomers();
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 
-    <form action="../../controllers/claim/add_claim.php" method="post">
+    <form action="index.php?page=save_claim" method="post">
         <label for="reward_id">Select Reward:</label>
         <select name="reward_id" id="reward_id" required>
             <option value="">-- Select Reward --</option>

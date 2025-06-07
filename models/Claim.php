@@ -57,10 +57,26 @@ class Claim {
     }
     
 
-    public function getClaimById($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM claim WHERE id = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+    public function deleteClaim($claimId) {
+        // Check if claim exists
+        $stmt = $this->pdo->prepare("SELECT * FROM claim where id = ?");
+        $stmt->execute([$claimId]);
+        $claim = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$claim){
+            return false;
+        }
+
+        // Calculate the points to be added back to the customer
+        $pointsToAdd = $claim['points_used'];
+        // Update customer's total points
+        $stmt = $this->pdo->prepare("UPDATE customer SET total_points = total_points + ? WHERE id = ?");
+        $stmt->execute([$pointsToAdd, $claim['customer_id']]);
+
+        // Delete the claim
+        $stmt = $this->pdo->prepare("DELETE FROM claim WHERE id = ?");
+        return $stmt->execute([$claimId]);
+        
     }
     
 }

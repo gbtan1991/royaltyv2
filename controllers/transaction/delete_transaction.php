@@ -20,7 +20,3 @@ if ($transactionModel->deleteTransaction($transactionId)) {
     exit;
 }
     
-
-
-
-?>

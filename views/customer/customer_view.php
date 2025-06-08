@@ -55,9 +55,3 @@ require_once __DIR__ . '/../../helpers/format.php';
 <div id="pagination-controls">
     <button id="prev-page" class="pagination"
 </div>
-
-
-<script src="../../../assets/js/customer.js">
-    console.log('Customer JS loaded');
-
-</script>

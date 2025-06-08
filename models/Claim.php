@@ -36,27 +36,28 @@ class Claim {
         return $stmt->execute([$customer_id, $admin_id, $reward_id, $points_used, $remarks]);
     }
 
-    public function getLatestClaims($limit = 3) {
-        $stmt = $this->pdo->query(
-            "SELECT 
-                cl.id,
-                c.username as customer_username,
-                a.username as admin_username,
-                r.reward_name as reward_name,
-                cl.points_used,
-                cl.claim_date,
-                cl.claim_status,
-                cl.remarks
-                FROM claim cl
-                JOIN customer c ON cl.customer_id = c.id
-                JOIN admin a ON cl.admin_id = a.id
-                JOIN reward r ON cl.reward_id = r.id
-                ORDER BY cl.claim_date DESC"
-        );
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-
+public function getLatestClaims($limit = 3) {
+    $stmt = $this->pdo->prepare(
+        "SELECT 
+            cl.id,
+            c.username AS customer_username,
+            a.username AS admin_username,
+            r.reward_name AS reward_name,
+            cl.points_used,
+            cl.claim_date,
+            cl.claim_status,
+            cl.remarks
+        FROM claim cl
+        JOIN customer c ON cl.customer_id = c.id
+        JOIN admin a ON cl.admin_id = a.id
+        JOIN reward r ON cl.reward_id = r.id
+        ORDER BY cl.claim_date DESC
+        LIMIT ?"
+    );
+    $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
     public function deleteClaim($claimId) {
         // Check if claim exists
         $stmt = $this->pdo->prepare("SELECT * FROM claim where id = ?");

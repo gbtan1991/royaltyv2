@@ -117,6 +117,7 @@ $charts = [
 // LIST CARD FUNCTION
 $customers = $customerModel->getLatestCustomers();
 $topCustomers = $customerModel->getTopCustomerPoints(3);
+$latestClaims = $claimModel->getLatestClaims(3);
 
 
 //LIST CARD DATA
@@ -144,7 +145,7 @@ $listCards= [
         'title' => 'Latest Claims',
         'tableId' => 'latestClaimsTable',
         'headers' => ['Claim ID', 'Username', 'Reward', 'Points used', 'Admin', 'Date Claimed'],
-        'data' => $claimModel->getLatestClaims(),
+        'data' => $latestClaims,
         'columns' => ['id', 'customer_username', 'reward_name', 'points_used', 'admin_username', 'claim_date'],
         'link' => 'customer.php'
     ]

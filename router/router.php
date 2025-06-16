@@ -15,14 +15,21 @@ $routes = [
     'add_transaction' => __DIR__ . '/../views/transaction/add_transaction.php',
     'save_transaction' => __DIR__ . '/../controllers/transaction/save_transaction.php',
     'delete_transaction' => __DIR__ . '/../controllers/transaction/delete_transaction.php',
-    
+
     'claim_view' => __DIR__ . '/../controllers/claim/claim_view.php',
     'add_claim' => __DIR__ . '/../views/claim/add_claim.php',
     'save_claim' => __DIR__ . '/../controllers/claim/save_claim.php',
     'delete_claim' => __DIR__ . '/../controllers/claim/delete_claim.php',
 
     'reward_view' => __DIR__ . '/../controllers/reward/reward_view.php',
+    'add_reward' => __DIR__ . '/../views/reward/add_reward.php',
+    'edit_reward' => __DIR__ . '../../controllers/reward/edit_reward.php',
+    'update_reward' => __DIR__ . '/../controllers/reward/update_reward.php',
+    'delete_reward' => __DIR__ . '/../controllers/reward/delete_reward.php',
+
     'admin_view' => __DIR__ . '/../controllers/admin/admin_view.php',
+
+
     'logout' => __DIR__ . '/../public/logout.php',
 ];
 

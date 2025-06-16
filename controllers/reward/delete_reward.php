@@ -10,17 +10,17 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $rewardModel = new Reward($pdo);
 
     if ($rewardModel->deleteReward($id)) {
-        header('Location: reward_view.php?success=Reward Deleted Successfully');
+        header('Location: index.php?page=reward_view&success=Reward Deleted Successfully');
         exit;
 
     } else {
-        header('Location: reward_view.php?error=Failed to Delete Reward');
+        header('Location: index.php?page=reward_view&error=Failed to Delete Reward');
         exit;
     }
 
 
 } else {
     // Handle the case when the id is not set
-    header('Location: reward_view.php?error=Invalid Request');
+    header('Location: index.php?page=reward_view&error=Invalid Request');
     exit;
 }

@@ -1,0 +1,100 @@
+.add-reward-page {
+    background-color: $alabaster;
+    max-width: 500px;
+    width: fit-content;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px $bone;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    .notification {
+        font-style: italic;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .label-fields {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 0.5rem;
+
+            input, textarea {
+                flex: 1;
+                height: 1.6rem;
+                padding: 0.3rem;
+                border-radius: 4px;
+                border: 1px solid $bone;
+                resize: none;
+            }
+
+            textarea {
+                height: 4rem;
+            }
+
+            label {
+                width: 40%;
+            }
+        }
+
+        .button-fields {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+
+            button {
+                border: none;
+                background-color: $bone;
+                border-radius: 3px;
+                padding: 0.5rem 1rem;
+                font-weight: 600;
+                color: $purple;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                width: 100px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: lighten($green, 5%);
+                    color: $alabaster;
+                }
+            }
+
+            a {
+                background-color: $bone;
+                border-radius: 3px;
+                padding: 0.5rem 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                color: $purple;
+                width: 100px;
+                cursor: pointer;
+                gap: 0.5rem;
+
+                &:hover {
+                    background-color: lighten($red, 5%);
+                    color: $alabaster;
+                }
+            }
+        }
+    }
+}

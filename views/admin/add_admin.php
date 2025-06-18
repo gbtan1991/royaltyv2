@@ -8,32 +8,52 @@ if ($_SESSION['role'] !== 'superadmin') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Admin</title>
-</head>
-<body>
+<div class="add-admin-page">
+
 
     <h2> Add Admin </h2>
 
-    <form action="../../controllers/admin/add_admin.php" method="post">
+    <div class="notification">
+<?php if(isset($_GET['success'])): ?>
+        <p style="color: green;"><?= htmlspecialchars($_GET['success']) ?></p>
+    <?php endif; ?>
+    <?php if(isset($_GET['error'])): ?>
+        <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
+    <?php endif; ?>
+
+</div>
+
+
+
+    <form action="index.php?page=save_admin.php" method="post">
+
+    <div class="label-fields">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br><br>
+    </div>
+
+    <div class="label-fields">
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" required><br><br>
+    </div>
+
+    <div class="info-fields">
+        <label for="role">Admin Role</label>
         <select name="role">
             <option value="admin">Admin</option>
             <option value="superadmin">Super Admin</option>
         </select>
 
-        <button type="submit">Add</button>
+    </div>
 
+    <div class="button-fields">
+        <button type="submit"><i class="fa-solid fa-plus"></i>Add</button>
+        <a href="index.php?page=admin_view"><i class="fa-solid fa-ban"></i>Cancel</a>
+
+    </div>    
 </form>
 
-    <a href="../../controllers/admin/admin_view.php">Back to Manage Admins</a>
     
-</body>
-</html>
+
+</div>
+

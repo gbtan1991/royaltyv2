@@ -58,7 +58,5 @@ require_once __DIR__ . '/../../helpers/format.php';
 </div>
     
 <div id="pagination-controls">
-    <button id="prev-page" class="pagination"
-
-
+    <button id="prev-page" class="pagination"></button>
 </div>

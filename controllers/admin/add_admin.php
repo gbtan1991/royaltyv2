@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $existingAdmin = $adminModel->getAdminByUsername($username);
         if ($existingAdmin) {
-            header("Location: ../../views/admin/add_admin.php?error=Username_exists");
+            header("Location: index.php?page=admin_view&error=Username_exists");
             exit;
         }
     } catch (Exception $e) {
@@ -29,10 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ✅ Add the new admin
     $success = $adminModel->addAdmin($username, $password, $role);
     if ($success) {
-        header("Location: ../../controllers/admin/admin_view.php?success=Admin added");
+        header("Location: index.php?page=admin_view&success=Admin added");
         exit;
     } else {
-        header("Location: ../../views/admin/add_admin.php?error=Failed_to_add_admin");
+        header("Location: index.php?page=admin_view&error=Failed_to_add_admin");
         exit;
     }
 }

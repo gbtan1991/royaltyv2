@@ -25,7 +25,7 @@ if ($_SESSION['role'] !== 'superadmin') {
 
 
 
-    <form action="index.php?page=save_admin.php" method="post">
+    <form action="index.php?page=save_admin" method="post">
 
     <div class="label-fields">
         <label for="username">Username:</label>

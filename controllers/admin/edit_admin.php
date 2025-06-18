@@ -11,7 +11,7 @@ if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'superadmin') {
 
 // ✅ Check if "id" is provided
 if (!isset($_GET['id'])) {
-    header('Location: ../../views/admin_view.php?error=Admin ID is missing.');
+    header('Location: index.php?page=admin_view&error=Admin ID is missing.');
     exit;
 }
 

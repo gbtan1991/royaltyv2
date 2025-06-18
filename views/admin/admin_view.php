@@ -4,23 +4,7 @@ require_once __DIR__ . '/../../helpers/format.php';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Management</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
+<div class="admin-view-layout">
  
     <h2>Admin Accounts</h2>
 
@@ -32,11 +16,8 @@ require_once __DIR__ . '/../../helpers/format.php';
         <p style="color: red;"><?= htmlspecialchars($_GET['error']) ?></p>
     <?php endif; ?>
 
-    <!-- Seach Bar -->
-     <input type="text" id="search-admin" placeholder="Search Admins">
-
-
-    <br>
+  
+    
 
     <!-- Admin Table -->
     <table>
@@ -50,7 +31,7 @@ require_once __DIR__ . '/../../helpers/format.php';
                 <th colspan="2">Actions</th>
             </tr>
         </thead>
-        <tbody id="admin-table-body">
+        <tbody>
             <?php foreach ($admins as $admin): ?>
                 <tr>
                     <td><?= htmlspecialchars($admin['id']) ?></td>
@@ -64,21 +45,16 @@ require_once __DIR__ . '/../../helpers/format.php';
     ?></td>
                     <td><?= formatDateTime($admin['created_at']) ?></td>
                     <td><?= formatDateTime($admin['modified_at']) ?></td>
-                    <td>
-                        <a href="../../controllers/admin/admin_edit.php?id=<?= $admin['id'] ?>">Edit</a> 
-    </td>
-                    <td><a href="../../controllers/admin/delete_admin.php?id=<?= $admin['id'] ?>" onclick="return confirm('Are you sure you want to delete this admin?');">Delete</a></td>
+                    <td class="table-actions">
+                        <a href="index.php?page=edit_admin&id=<?= $admin['id'] ?>"><i class="fa-solid fa-wrench"></i></a> 
+    
+                    <a href="index.php?page=delete_admin&id=<?= $admin['id'] ?>" class="delete-button" onclick="return confirm('Are you sure you want to delete this admin?');"><i class="fa-solid fa-trash"></i></a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <br>
-    <a href="../../views/admin/add_admin.php">Add New Admin</a> |
-    <a href="../../views/dashboard.php">Back to Dashboard</a>
+    
 
-    <script src="../../assets/js/admin.js"> 
-</script>
 
-</body>
-</html>
+</div>

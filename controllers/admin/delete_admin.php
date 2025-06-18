@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     // ✅ Fail-safe: Prevent deleting own account
     if ($adminId == $loggedInAdminId) {
         // Don't allow self-deletion
-        header('Location: ../../controllers/admin/admin_view.php?error=You cannot delete your own account!');
+        header('Location: index.php?page=admin_view&error=You cannot delete your own account!');
         echo "Admin id is $adminId and logged in admin id is $loggedInAdminId";
         exit();
     } else {
@@ -26,10 +26,10 @@ if (isset($_GET['id'])) {
         $adminModel = new Admin($pdo);
 
         if ($adminModel->deleteAdmin($adminId)) {
-            header('Location: ../../controllers/admin/admin_view.php?success=Admin deleted successfully.');
+            header('Location: index.php?page=admin_view&success=Admin deleted successfully.');
             exit();
         } else {
-            header('Location: ../../controllers/admin/admin_view.php?error=Failed to delete admin.');
+            header('Location: index.php?page=admin_view&error=Failed to delete admin.');
             exit();
         }
     }

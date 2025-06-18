@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../config/database.php';
         <?php endif; ?>
     </div>
 
-    <form action="index.php?page=add_reward" method="post">
+    <form action="index.php?page=save_reward" method="post">
 
         <div class="label-fields">
             <label for="reward_name">Reward Name:</label>

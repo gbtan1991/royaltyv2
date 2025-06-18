@@ -51,7 +51,7 @@ $customers = $customerModel->getAllCustomers();
 
     <div class="button-fields">
         <button type="submit"><i class="fa-solid fa-check"></i>Confirm Transaction</button>
-        <a href="../../controllers/transaction/transaction_view.php"><i class="fa-solid fa-ban"></i>Cancel</a>
+        <a href="index.php?page=dashboard"><i class="fa-solid fa-ban"></i>Cancel</a>
 
     </div>
     </form>

@@ -8,13 +8,6 @@ if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Admin</title>
-</head>
-<body>
 
 <h2>Edit Admin Account</h2>
 
@@ -24,7 +17,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
 <?php endif; ?>
 
 
-<form action="../../controllers/admin/edit_admin.php" method="post">
+<form action="index.php?page=update_admin" method="post">
     <input type="hidden" name="id" value="<?= htmlspecialchars($admin['id']) ?>">
 
     <label for="username">Username:</label><br>
@@ -41,5 +34,3 @@ if (!isset($_SESSION['admin']) || $_SESSION['role'] !== 'superadmin') {
 
     <button type="submit">Save Changes</button>
 </form>
-</body>
-</html>

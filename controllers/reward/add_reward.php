@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $reward = $rewardModel->addReward($reward_name, $required_points, $reward_description);
     if($reward) {
-        header("Location: reward_view.php?success=Reward added successfully");
+        header("Location: index.php?page=reward_view&success=Reward added successfully");
         exit;
     } else {
-        header("Location: reward_view.php?error=Reward not added");
+        header("Location: index.php?page=reward_view&error=Reward not added");
         exit;
     }
 }

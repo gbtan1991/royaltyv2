@@ -1,12 +1,10 @@
-console.log("Claim module loaded");
-
 const ClaimModule = {
     rowsPerPage: 17,
     currentPage: 1,
 
     init: function () {
         this.bindEvents();
-        this.setupPagination();
+        this.setupPagination(); // Initialize pagination on load
     },
 
     bindEvents: function () {
@@ -20,7 +18,7 @@ const ClaimModule = {
     },
 
     filterTable: function () {
-        const query = document.getElementById("search-claim").ariaValueMax.toLowerCase();
+        const query = document.getElementById("search-claim").value.toLowerCase();
         const tableBody = document.getElementById("claim-table-body");
         const rows = Array.from(tableBody.querySelectorAll("tr"));
 
@@ -29,8 +27,7 @@ const ClaimModule = {
             row.style.display = rowText.includes(query) ? "" : "none";
         });
 
-        this.currentPage = 1;
-
+        this.currentPage = 1; // Reset to first page after search
     },
 
     setupPagination: function () {

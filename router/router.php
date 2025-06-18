@@ -23,11 +23,17 @@ $routes = [
 
     'reward_view' => __DIR__ . '/../controllers/reward/reward_view.php',
     'add_reward' => __DIR__ . '/../views/reward/add_reward.php',
+    'save_reward' => __DIR__ . './../controllers/reward/add_reward.php',
     'edit_reward' => __DIR__ . '../../controllers/reward/edit_reward.php',
     'update_reward' => __DIR__ . '/../controllers/reward/update_reward.php',
     'delete_reward' => __DIR__ . '/../controllers/reward/delete_reward.php',
 
     'admin_view' => __DIR__ . '/../controllers/admin/admin_view.php',
+    'add_admin' => __DIR__ . '/../views/admin/add_admin.php',
+    'save_admin' => __DIR__ . '/../controllers/admin/add_admin.php',
+    'edit_admin' => __DIR__ . '/../controllers/admin/edit_admin.php',
+    'update_admin' => __DIR__ . '/../controllers/admin/update_admin.php',
+    'delete_admin' => __DIR__ . '/../controllers/admin/delete_admin.php',
 
 
     'logout' => __DIR__ . '/../public/logout.php',

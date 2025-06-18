@@ -35,7 +35,9 @@ function render_layout($content, $currentPage = '', $category = '') {
         $scriptTag = "<script src=\"{$baseUrl}assets/js/transaction.js\"></script>";
     } elseif ($category === 'claim') {
         $scriptTag = "<script src=\"{$baseUrl}assets/js/claim.js\"></script>";
-    }
+    } elseif ($category === 'reward') {
+        $scriptTag = "<script src=\"{$baseUrl}assets/js/reward.js\"></script>";
+    }   
 
     echo <<<HTML
 <!DOCTYPE html>

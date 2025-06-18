@@ -32,7 +32,7 @@ require_once __DIR__ . '/../../helpers/format.php';
             </tr>
         </thead>
 
-        <tbody>
+        <tbody id="reward-table-body">
             <?php if (!empty($reward)): ?>
                 <?php foreach ($reward as $rewards): ?>
                     <tr>
@@ -56,4 +56,8 @@ require_once __DIR__ . '/../../helpers/format.php';
 
     </table>
 
+</div>
+
+<div id="pagination-controls">
+    <button id="prev-page" class="pagination"></button>
 </div>

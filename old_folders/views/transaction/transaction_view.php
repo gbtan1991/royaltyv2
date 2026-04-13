@@ -53,13 +53,16 @@ require_once '../helpers/format.php';
 
 </div>
 
-
+<!-- 
 <div id="pagination-controls">
-    <button id="prev-page" class="pagination"
-</div>
+    <button id="prev-page" class="pagination">  </button>
+</div> -->
+
+<!-- <div id="pagination-controls" class="pagination-container"></div> -->
 
 
-<script src="../../../assets/js/customer.js">
-    console.log('Customer JS loaded');
+
+<script src="../../../assets/js/transaction.js">
+    
 
 </script>

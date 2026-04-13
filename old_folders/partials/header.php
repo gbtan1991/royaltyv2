@@ -46,6 +46,7 @@ $pageTitle = isset($_GET['page'])
                 <div class="settings-dropdown" id="settingsDropdown">
                     <div class="settings-wrapper">
                         <a href="#">Settings</a>
+                        <a href="index.php?page=backupDatabase">Backup Database</a>
                         <a href="../public/logout.php">Logout</a>
                     </div>
                 </div>

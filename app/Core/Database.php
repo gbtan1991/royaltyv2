@@ -1,21 +1,26 @@
 <?php
 
+
+// As we are using psr-4 autoloading, this is a declaration calling the namespace of this class to avoid using too much includes and required statements.
 namespace App\Core;
 
+// Imports the built-in PHP database tools.
 use PDO;
 use PDOException;
 
 class Database
 {
+    // This is a singleton pattern to ensure we only have one database connection throughout the application.
     private static $instance = null;
 
-    private function __construct() {} // Block direct instantiation
+    private function __construct() {} // Block direct instantiation of the class.
 
+    // This method returns the PDO connection instance, creating it if doesn't already exist.
     public static function getConnection(): PDO
     {
         if (self::$instance === null) {
             try {
-                // These come from your .env file
+                // These come from the .env file
                 $dsn = sprintf(
                     "mysql:host=%s;dbname=%s;charset=utf8mb4",
                     $_ENV['DB_HOST'],

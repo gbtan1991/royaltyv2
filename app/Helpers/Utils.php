@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class Util
+class Utils
 {
     public static function dd($data)
     {

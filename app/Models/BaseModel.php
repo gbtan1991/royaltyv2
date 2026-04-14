@@ -7,13 +7,13 @@ use PDO;
 
 abstract class BaseModel
 {
-    protected $db;
-    protected $table;
+        protected $db;
+        protected $table;
 
-    public function __construct()
-    {
-        $this->db = Database::getConnection();
-    }
+        public function __construct()
+        {
+            $this->db = Database::getConnection();
+        }
 
     // Get everything from the table
     public function all()

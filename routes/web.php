@@ -19,3 +19,10 @@ $router->get("/about", function() {
 $router->get('/contact', function() {
     require __DIR__ . '/../views/contact.php'; 
 });
+
+// Admin Routes
+$router->get('/admin', '\App\Controllers\admin\AdminController@index');
+$router->get('/admin/list', '\App\Controllers\admin\AdminController@listAdmins');
+
+// You can keep the customer ones separate
+$router->get('/search', '\App\Controllers\CustomerController@index');

@@ -6,7 +6,7 @@ use Bramus\Router\Router;
 use Dotenv\Dotenv;
 use App\Helpers\Utils;
 
-// --- ADD THIS PART ---
+
 // This actually reads the .env file and fills $_ENV
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();

@@ -61,9 +61,10 @@ class User
     /**
      * Delete user (This will auto-delete Admin/Customer due to CASCADE)
      */
-   public static function delete($id) {
-    $db = Database::getConnection();
-    $stmt = $db->prepare("DELETE FROM users WHERE id = :id");
-    return $stmt->execute(['id' => $id]);
-}
+    public static function delete($id)
+    {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("DELETE FROM users WHERE id = :id");
+        return $stmt->execute(['id' => $id]);
+    }
 }

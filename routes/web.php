@@ -51,3 +51,5 @@ $router->get('/search', '\App\Controllers\CustomerController@index');
 
 // Customer Resours Routes
 $router->get('/customer', 'App\Controllers\customer\CustomerController@index');
+$router->get('/customer/create', 'App\Controllers\customer\CustomerController@create');
+$router->post('/customer/store', 'App\Controllers\customer\CustomerController@store');

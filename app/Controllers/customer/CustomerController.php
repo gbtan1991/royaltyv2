@@ -23,7 +23,7 @@ class CustomerController {
         header('Location: /royaltyv2/public/customer');
         exit();
     } else {
-      //  echo "Failed to create customer. Username or Email might already be taken.";
+        echo "Failed to create customer. Username or Email might already be taken.";
     } 
 
 

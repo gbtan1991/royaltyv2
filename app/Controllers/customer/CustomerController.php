@@ -13,5 +13,19 @@ class CustomerController {
 
    }
 
+   public function create() {
+      require __DIR__ . '/../../../views/customer/create.php';
+   }
+ 
    
+   public function store() {
+    if (Customer::store($_POST)) {
+        header('Location: /royaltyv2/public/customer');
+        exit();
+    } else {
+      //  echo "Failed to create customer. Username or Email might already be taken.";
+    } 
+
+
+   }
 }

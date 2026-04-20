@@ -47,3 +47,7 @@ $router->post('/admin/destroy/(\d+)', 'App\Controllers\admin\AdminController@des
 
 // You can keep the customer ones separate
 $router->get('/search', '\App\Controllers\CustomerController@index');
+
+
+// Customer Resours Routes
+$router->get('/customer', 'App\Controllers\customer\CustomerController@index');

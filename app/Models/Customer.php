@@ -17,8 +17,10 @@ class Customer
             c.member_id,
             c.loyalty_tier,
             c.last_login,
+            c.is_active,
             u.first_name,
             u.last_name,
+            u.username,
             u.email,
             u.birthdate
      

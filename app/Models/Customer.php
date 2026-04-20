@@ -2,19 +2,37 @@
 
 namespace App\Models;
 
-class Customer extends BaseModel
-{
-    // The BaseModel will use this to know which table to query
-    protected $table = 'customer';
+use App\Core\Database;
+use App\Helpers\Utils;
+use PDO;
 
-    /**
-     * Custom method to get top customers based on points
-     */
-    public function getTopHolders($limit = 10)
+class Customer
+{
+    public static function getAll()
     {
-        $stmt = $this->db->prepare("SELECT * FROM {$this->table} ORDER BY total_points DESC LIMIT :limit");
-        $stmt->bindValue(':limit', (int) $limit, \PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll();
+        $db = Database::getConnection();
+
+        $query = "SELECT  
+            c.id,
+            c.member_id,
+            c.loyalty_tier,
+            c.last_login,
+            u.first_name,
+            u.last_name,
+            u.email,
+            u.birthdate
+     
+            FROM customers c
+            JOIN users u ON c.user_id = u.id
+            ORDER BY u.id DESC";
+
+        $stmt = $db->query($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        Utils::dd($query);
+
+
     }
+
+
+    
 }

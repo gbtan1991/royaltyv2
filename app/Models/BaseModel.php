@@ -16,7 +16,7 @@ abstract class BaseModel
 
     protected static function init()
     {
-        if(!self::$db) {
+        if (!self::$db) {
             self::$db = Database::getConnection();
         }
     }
@@ -79,19 +79,45 @@ abstract class BaseModel
         return $stmt->execute(['id' => $id]);
     }
 
-    public static function withJoin($joinTable, $foreignKey, $joinColumns = "*")
+    public static function belongsTo($parentTable, $foreignKey, $columns = '*')
     {
-        $mainAlias = substr(static::$table, 0, 1); // e.g., 'u' for 'users'
-        $joinAlias = substr($joinTable, 0, 1); // e.g., 'a' for 'admins'
-
         self::init();
-        $sql = "SELECT $mainAlias.*, $joinAlias.$joinColumns 
-                FROM " . static::$table . " $mainAlias
-                JOIN $joinTable $joinAlias ON $mainAlias.id = $joinAlias.$foreignKey
-                WHERE $mainAlias.id = :id";
 
-        $stmt = self::$db->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        // Create aliases based on the first letter of the table names
+        $child = substr(static::$table, 0, 1);
+        $parent = substr($parentTable, 0, 1);
+
+        // Prevent collision if both tables start with the same letter
+        if ($child === $parent) {
+            $parent = 'p';
+        }
+
+        /**
+         * Logic: We select all from child ($child.*) 
+         * and specifically what you requested from parent ($columns)
+         */
+        $sql = "SELECT $child.*, $columns 
+            FROM " . static::$table . " $child
+            JOIN $parentTable $parent ON $child.$foreignKey = $parent.id";
+
+        $stmt = self::$db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function hasOne($childTable, $foreignKey, $columns = '*')
+    {
+        self::init();
+        $parent = substr(static::$table, 0, 1);
+        $child = substr($childTable, 0, 1);
+        if ($parent === $child) {
+            $child = 'c';
+        }
+
+        $sql = "SELECT $parent.*, $child.$columns 
+            FROM " . static::$table . " $parent
+            JOIN $childTable $child ON $parent.id = $child.$foreignKey";
+
+        $stmt = self::$db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

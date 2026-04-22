@@ -1,55 +1,20 @@
 <?php
-/** @var \Bramus\Router\Router $router */
-session_start();
-$_SESSION["username"] = "gbtan23";
-$_SESSION["role"] = "admin";
 
+use App\Helpers\Route;
+use App\Controllers\admin\AdminController;
 
+/**
+ * Admin Routes
+ * We use the Route helper (Translator) instead of the $router variable
+ */
 
+// This now works because the Helper converts the array to a string!
+Route::get('/admin', [AdminController::class, 'index']);
 
-session_destroy();
+// Example of a POST route using the same logic
+Route::post('/admin/destroy/{id}', [AdminController::class, 'destroy']);
 
-
-
-$router->get('/', function() {
-
-
-
-
-
-    echo "<h1>Home Page</h1>"; 
-    echo "<p>Welcome, " . $_SESSION["username"] . "!</p> you are logged in as " . $_SESSION["role"] . ".";
-    echo "<a href='search'>Go to Search</a>"; 
-    echo "<br><a href='about'>Go to About</a>";
-    echo "<br><a href='contact'>Go to Contact</a>";
+// You can still use traditional closures if you want
+Route::get('/test', function() {
+    echo "Routing system is working!";
 });
-
-$router->get('/search', function() {
-    require __DIR__ . '/../views/search.php'; 
-});
-
-$router->get("/about", function() {
-    require __DIR__ . '/../views/about.php'; 
-});
-
-$router->get('/contact', function() {
-    require __DIR__ . '/../views/contact.php'; 
-});
-
-// Admin Resource Routes
-$router->get('/admin', 'App\Controllers\admin\AdminController@index');          // List all
-$router->get('/admin/create', 'App\Controllers\admin\AdminController@create');   // Show form to add
-$router->post('/admin/store', 'App\Controllers\admin\AdminController@store');    // Save new record
-$router->get('/admin/show/(\d+)', 'App\Controllers\admin\AdminController@show'); // View one
-$router->get('/admin/edit/(\d+)', 'App\Controllers\admin\AdminController@edit'); // Show form to edit
-$router->post('/admin/update/(\d+)', 'App\Controllers\admin\AdminController@update'); // Save changes
-$router->post('/admin/destroy/(\d+)', 'App\Controllers\admin\AdminController@destroy'); // Delete
-
-// You can keep the customer ones separate
-$router->get('/search', '\App\Controllers\CustomerController@index');
-
-
-// Customer Resours Routes
-$router->get('/customer', 'App\Controllers\customer\CustomerController@index');
-$router->get('/customer/create', 'App\Controllers\customer\CustomerController@create');
-$router->post('/customer/store', 'App\Controllers\customer\CustomerController@store');

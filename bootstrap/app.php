@@ -1,22 +1,27 @@
 <?php
-// bootstrap/app.php
 require_once __DIR__ . '/../vendor/autoload.php';
+
+// Change this line to be more explicit:
+$basePath = dirname(__DIR__);
+require_once $basePath . '/app/Helpers/Route.php';
 
 use Bramus\Router\Router;
 use Dotenv\Dotenv;
-use App\Helpers\Utils;
+use App\Helpers\Route;
 
-
-// This actually reads the .env file and fills $_ENV
+// Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
-// --------------------
 
+// 1. Create the Bramus Engine
 $router = new Router();
 $router->setBasePath('/royaltyv2/public');
 
-// Load the routes
+// 2. Initialize our Helper with the Engine
+Route::init($router);
+
+// 3. Load your route definitions
 require_once __DIR__ . '/../routes/web.php';
 
-// Return the router object so index.php can use it
+// Return the engine so index.php can call $router->run()
 return $router;

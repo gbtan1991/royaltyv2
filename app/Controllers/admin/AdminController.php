@@ -9,11 +9,15 @@ use App\Models\Admin;
 class AdminController {
 
 
-    public function index() {
-        $admins = Admin::getAll();
-        require __DIR__ . '/../../../views/admin/index.php';
+   public function index() {
+        // Fetch admins joined with their user data
+        $admins = Admin::adminWithUsers();
 
+        // Load the view you just built
+        require __DIR__ . '/../../../views/admin/index.php';
     }
+
+   
 
 
 }

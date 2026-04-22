@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace App\Models;
@@ -15,30 +15,17 @@ class Admin extends BaseModel
         'last_login'
     ];
 
-
-    public static function getAll() 
+    public static function adminWithUsers()
     {
-        self::init();
-        
-        $sql = "SELECT 
-                a.id, 
-                a.role, 
-                a.is_active, 
-                a.last_login,
-                u.first_name, 
-                u.last_name, 
-                u.username, 
-                u.email
-              FROM admins a
-              JOIN users u ON a.user_id = u.id
-              ORDER BY u.last_name ASC";
-
-
-        $stmt = self::$db->query($sql);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
+        /**
+         * Because we use Option 1, we manually prefix the columns 
+         * with 'u.' to tell MySQL they belong to the 'users' table.
+         */
+        return self::belongsTo(
+            'users',
+            'user_id',
+            'u.first_name, u.last_name, u.email, u.username'
+        );
     }
 
-    
-    
 }

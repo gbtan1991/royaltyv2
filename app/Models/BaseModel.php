@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Core\Database;
+use Exception;
 use PDO;
 
 
@@ -54,6 +55,29 @@ abstract class BaseModel
         $stmt = self::$db->prepare($sql);
         $stmt->execute($filteredData);
         return self::$db->lastInsertId();
+    }
+
+    public static function transaction(callable $callback)
+    {
+        self::init();
+        try{
+            self::$db->beginTransaction();
+
+            // Execute the callback
+            $result = $callback();
+
+            self::$db->commit();
+            return $result;
+        } catch (Exception $e) {
+            // If anything fails inside the callback,  we rollback the transaction
+            if (self::$db->inTransaction()) {
+                self::$db->rollBack();
+            }
+            // Re-throw the exception so it can be handled by the caller
+            throw $e;
+            
+        }
+
     }
 
     // This updates an existing record in the database.
@@ -120,4 +144,23 @@ abstract class BaseModel
         $stmt = self::$db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function hasMany($childTable, $foreignKey, $columns = '*')
+{
+    self::init();
+    $parent = substr(static::$table, 0, 1);
+    $child = substr($childTable, 0, 1);
+
+        if ($parent === $child) {
+        $child = 'c';
+    }
+
+    // We use $columns directly to allow for flexibility
+    $sql = "SELECT $parent.*, $columns 
+            FROM " . static::$table . " $parent
+            LEFT JOIN $childTable $child ON $parent.id = $child.$foreignKey";
+
+    $stmt = self::$db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }

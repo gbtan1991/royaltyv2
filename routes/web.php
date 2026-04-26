@@ -10,6 +10,8 @@ use App\Controllers\admin\AdminController;
 
 // This now works because the Helper converts the array to a string!
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/create', [AdminController::class, 'create']);
+Route::post('/admin/store', [AdminController::class, 'store']);
 
 // Example of a POST route using the same logic
 Route::post('/admin/destroy/{id}', [AdminController::class, 'destroy']);

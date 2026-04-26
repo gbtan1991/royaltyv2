@@ -4,6 +4,9 @@
 namespace App\Controllers\admin;
 
 use App\Models\Admin;
+use App\Models\BaseModel;
+use App\Models\User;
+use Exception;
 
 
 class AdminController {
@@ -18,10 +21,30 @@ class AdminController {
     }
 
    
+    public function create() {
+        require __DIR__ . '/../../../views/admin/create.php';
+    }
+
+    public function store() {
+        try {
+            // We use the BaseModel transaction() to wrap both insert()
+            BaseModel::transaction(function(){
+                $userId = User::insert($_POST);
+
+                $adminData = $_POST;
+                $adminData['user_id'] = $userId; // Link the admin to the user
+                Admin::insert($adminData);
+            }); 
+            header('Location: /royaltyv2/public/admin');
+
+        } catch (Exception $e) {
+            // Handle any errors that occurred during the transaction
+            echo "Error creating admin: " . $e->getMessage();
+        }
+}
 
 
 }
-
 //     // GET /admin - Display a list of admins
 //     public function index() {
 //         $admins = Admin::getAll();

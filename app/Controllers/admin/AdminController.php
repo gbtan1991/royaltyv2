@@ -9,65 +9,67 @@ use App\Models\User;
 use Exception;
 
 
-class AdminController {
+class AdminController
+{
 
 
-   public function index() {
+    public function index()
+    {
         // Fetch admins joined with their user data
         $admins = Admin::adminWithUsers();
 
         // Load the view you just built
-        require __DIR__ . '/../../../views/admin/index.php';
+        return view('admin/index', ['admins' => $admins]);
     }
 
-   
-    public function create() {
-        require __DIR__ . '/../../../views/admin/create.php';
+
+    public function create()
+    {
+        $roles = ['Staff', 'Manager', 'SuperAdmin']; // Example roles
+        return view('admin/create', ['roles' => $roles]);
     }
 
-    public function store() {
+    public function store()
+    {
+
+        if (!empty($_POST['password'])) {
+            $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        }
         try {
             // We use the BaseModel transaction() to wrap both insert()
-            BaseModel::transaction(function(){
+            BaseModel::transaction(function () {
                 $userId = User::insert($_POST);
 
                 $adminData = $_POST;
                 $adminData['user_id'] = $userId; // Link the admin to the user
                 Admin::insert($adminData);
-            }); 
-            header('Location: /royaltyv2/public/admin');
+            });
+            redirect('admin');
 
         } catch (Exception $e) {
             // Handle any errors that occurred during the transaction
             echo "Error creating admin: " . $e->getMessage();
         }
+
+
+    }
+
+    public function show($id)
+    {
+        // Fetch combined data from the Model
+        $admin = Admin::findWithUser($id);
+
+        // If no admin is found (e.g., someone types a random ID in the URL)
+        if (!$admin) {
+            return redirect('admin?error=not_found');
+        }
+
+        // Pass the $admin array to your show.php view
+        return view('admin/show', ['admin' => $admin]);
+    }
+
 }
 
-
-}
-//     // GET /admin - Display a list of admins
-//     public function index() {
-//         $admins = Admin::getAll();
-//         require __DIR__ . '/../../../views/admin/index.php';
-//     }
-
-//     // GET /admin/create - Show the form for creating a new admin
-//     public function create() {
-//         require __DIR__ . '/../../../views/admin/create.php';
-//     }
-
-//     // POST /admin/store - Store a newly created admin in database
-//    public function store() {
-//     // We pass the whole $_POST array containing user and admin details
-//     if (Admin::store($_POST)) {
-//         // Success! Redirect to the list
-//         header('Location: /royaltyv2/public/admin');
-//         exit();
-//     } else {
-//         // Handle error (e.g., duplicate username or database issue)
-//         echo "Failed to create admin. Username or Email might already be taken.";
-//     }
-// }
 
 //     // GET /admin/show/{id} - Display a specific admin
 //     public function show($id) {

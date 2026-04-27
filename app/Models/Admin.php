@@ -28,6 +28,24 @@ class Admin extends BaseModel
         );
     }
 
-   
+    public static function findWithUser($id)
+    {
+        self::init();
+
+        $sql = "SELECT 
+                u.first_name, u.last_name, u.username, u.email, u.birthdate, u.created_at,
+                a.id, a.role, a.is_active, a.last_login
+            FROM admins a
+            JOIN users u ON a.user_id = u.id
+            WHERE a.id = :id 
+            LIMIT 1";
+
+        $stmt = self::$db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $result ? $result : null;
+    }
+
 
 }

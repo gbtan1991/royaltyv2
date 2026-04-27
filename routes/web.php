@@ -12,11 +12,4 @@ use App\Controllers\admin\AdminController;
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/create', [AdminController::class, 'create']);
 Route::post('/admin/store', [AdminController::class, 'store']);
-
-// Example of a POST route using the same logic
-Route::post('/admin/destroy/{id}', [AdminController::class, 'destroy']);
-
-// You can still use traditional closures if you want
-Route::get('/test', function() {
-    echo "Routing system is working!";
-});
+Route::get('/admin/show/(\d+)', [AdminController::class, 'show']);

@@ -41,9 +41,9 @@
             <div class="form-group">
                 <label>System Role:</label>
                 <select name="role" required>
-                    <option value="Staff">Staff</option>
-                    <option value="Manager">Manager</option>
-                    <option value="SuperAdmin">SuperAdmin</option>
+                    <?php foreach ($roles as $role): ?>
+                        <option value="<?= htmlspecialchars($role) ?>"><?= htmlspecialchars($role) ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </fieldset>

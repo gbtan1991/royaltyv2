@@ -15,6 +15,8 @@ abstract class BaseModel
     protected static $table;
     protected static $fillable = [];
 
+    protected static $hidden = [];
+
     protected static function init()
     {
         if (!self::$db) {
@@ -22,11 +24,27 @@ abstract class BaseModel
         }
     }
 
-    // START COMMON CRUD METHODS - Can be overridden in child Models if needed
+    protected static function filterHidden($data)
+    {
+        // If it's a single record (associative array)
+        if (isset($data[0]) === false && is_array($data)) {
+            foreach (static::$hidden as $key) {
+                unset($data[$key]);
+            }
+            return $data;
+        }
 
-    // READ METHODS
+        // If it's a collection (list of records)
+        return array_map(function($item) {
+            foreach (static::$hidden as $key) {
+                unset($item[$key]);
+            }
+            return $item;
+        }, $data);
+    }
 
-    // This queries all of the data in the database for the given model.
+
+
     public static function all()
     {
         self::init();

@@ -13,3 +13,6 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/create', [AdminController::class, 'create']);
 Route::post('/admin/store', [AdminController::class, 'store']);
 Route::get('/admin/show/(\d+)', [AdminController::class, 'show']);
+Route::get('/admin/edit/(\d+)', [AdminController::class, 'edit']);
+Route::post('/admin/update/(\d+)', [AdminController::class, 'update']);
+Route::post('/admin/destroy/(\d+)', [AdminController::class, 'destroy']);

@@ -68,49 +68,58 @@ class AdminController
         return view('admin/show', ['admin' => $admin]);
     }
 
+    public function edit($id)
+    {
+        // Fetch combined data from the Model
+        $admin = Admin::findWithUser($id);
+
+        // If no admin is found (e.g., someone types a random ID in the URL)
+        if (!$admin) {
+            return redirect('admin?error=not_found');
+        }
+
+        return view('admin/edit', ['admin' => $admin]);
+
+    }
+
+    public function update($id)
+    {
+        try {
+            BaseModel::transaction(function () use ($id) {
+                // 1. Get the admin to find the linked user_id
+                $admin = Admin::find($id);
+                $userId = $admin['user_id'];
+
+                // 2. Update the User table (first_name, last_name, email)
+                User::update($userId, $_POST);
+
+                // 3. Update the Admin table (role/access_level, is_active)
+                // Note: Since your form uses 'role', we map it to 'access_level'
+                $adminData = $_POST;
+                $adminData['access_level'] = $_POST['role'];
+
+                Admin::update($id, $adminData);
+            });
+
+            return redirect('admin?success=updated');
+        } catch (Exception $e) {
+            die("Update failed: " . $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            // Use our transaction to ensure the delete happens cleanly
+            BaseModel::transaction(function () use ($id) {
+                Admin::delete($id);
+            });
+
+            return redirect('admin?success=deleted');
+        } catch (Exception $e) {
+            die("Delete failed: " . $e->getMessage());
+        }
+    }
 }
 
 
-//     // GET /admin/show/{id} - Display a specific admin
-//     public function show($id) {
-//     $admin = Admin::find($id);
-
-//     if (!$admin) {
-//         // Handle the case where the admin doesn't exist
-//         die("Administrator not found.");
-//     }
-
-//     require __DIR__ . '/../../../views/admin/show.php';
-// }
-
-//     // GET /admin/edit/{id} - Show the form for editing an admin
-//     public function edit($id) {
-//     $admin = Admin::find($id); // This uses the JOIN method we wrote for 'show'
-
-//     if (!$admin) {
-//         die("Administrator not found.");
-//     }
-
-//     require __DIR__ . '/../../../views/admin/edit.php';
-// }
-
-//     // POST /admin/update/{id} - Update the specified admin in database
-//     public function update($id) {
-//     if (Admin::update($id, $_POST)) {
-//         header('Location: /royaltyv2/public/admin/show/' . $id);
-//         exit();
-//     } else {
-//         echo "Update failed. The email might already be taken by another user.";
-//     }
-// }
-
-//     // POST /admin/destroy/{id} - Remove the specified admin from database
-//     public function destroy($id) {
-//     if (Admin::delete($id)) {
-//         // Successfully deleted
-//         header('Location: /royaltyv2/public/admin');
-//         exit();
-//     } else {
-//         echo "Error: Could not delete the administrator.";
-//     }
-// }

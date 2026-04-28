@@ -35,7 +35,7 @@ abstract class BaseModel
         }
 
         // If it's a collection (list of records)
-        return array_map(function($item) {
+        return array_map(function ($item) {
             foreach (static::$hidden as $key) {
                 unset($item[$key]);
             }
@@ -78,7 +78,7 @@ abstract class BaseModel
     public static function transaction(callable $callback)
     {
         self::init();
-        try{
+        try {
             self::$db->beginTransaction();
 
             // Execute the callback
@@ -93,7 +93,7 @@ abstract class BaseModel
             }
             // Re-throw the exception so it can be handled by the caller
             throw $e;
-            
+
         }
 
     }
@@ -102,13 +102,27 @@ abstract class BaseModel
     public static function update($id, $data)
     {
         self::init();
-        $filteredData = array_intersect_key($data, array_flip(static::$fillable));
-        $setClause = implode(', ', array_map(fn($col) => "$col = :$col", array_keys($filteredData)));
 
-        $sql = "UPDATE " . static::$table . " SET $setClause WHERE id = :id";
+        // 1. Only allow fields defined in the Model's $fillable array
+        $filteredData = array_intersect_key($data, array_flip(static::$fillable));
+
+        // 2. Build the SQL string: "column1 = :column1, column2 = :column2"
+        $fields = "";
+
+        foreach ($filteredData as $key => $value) {
+            $fields .= "{$key} = :{$key}, ";
+        }
+
+        $fields = rtrim($fields, ', ');
+
+        $sql = "UPDATE " . static::$table . " SET $fields WHERE id = :id";
+
+        // 3. Add the ID to the data array for the WHERE clause
         $filteredData['id'] = $id;
+
         $stmt = self::$db->prepare($sql);
         return $stmt->execute($filteredData);
+
     }
 
 
@@ -116,8 +130,11 @@ abstract class BaseModel
     public static function delete($id)
     {
         self::init();
-        $sql = "DELETE FROM " . static::$table . " WHERE id = :id";
+        $table = static::$table;
+
+        $sql = "DELETE FROM {$table} WHERE id = :id";
         $stmt = self::$db->prepare($sql);
+
         return $stmt->execute(['id' => $id]);
     }
 
@@ -164,21 +181,21 @@ abstract class BaseModel
     }
 
     public static function hasMany($childTable, $foreignKey, $columns = '*')
-{
-    self::init();
-    $parent = substr(static::$table, 0, 1);
-    $child = substr($childTable, 0, 1);
+    {
+        self::init();
+        $parent = substr(static::$table, 0, 1);
+        $child = substr($childTable, 0, 1);
 
         if ($parent === $child) {
-        $child = 'c';
-    }
+            $child = 'c';
+        }
 
-    // We use $columns directly to allow for flexibility
-    $sql = "SELECT $parent.*, $columns 
+        // We use $columns directly to allow for flexibility
+        $sql = "SELECT $parent.*, $columns 
             FROM " . static::$table . " $parent
             LEFT JOIN $childTable $child ON $parent.id = $child.$foreignKey";
 
-    $stmt = self::$db->query($sql);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        $stmt = self::$db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
